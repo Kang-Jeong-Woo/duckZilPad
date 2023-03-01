@@ -1,0 +1,60 @@
+.postIt{
+    overflow: hidden;
+    transition: all 0.1s ease-out;
+}
+.tab {
+    position: relative;
+    top: -23px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+.content{
+    background: lightpink;
+    height: 89%;
+    border: deeppink 2px solid;
+}
+
+.table {
+    position: relative;
+    margin-left: auto;
+    /* border: deeppink 2px solid;
+    background: lightpink; */
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+    table-layout: fixed;
+}
+
+/* .table thead {
+    border-bottom: palevioletred 1px solid;
+}
+
+.table tr td {
+    border: 1px solid palevioletred;
+} */
+
+.postIt{
+    overflow: hidden;
+    transition: all 0.1s ease-out;
+}
+
+.tabBtn {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 23px;
+}
+
+.tabText {
+    text-align: center;
+    vertical-align: middle;
+    cursor: auto;
+    height: 23px;
+    margin-right: 0.5em;
+}
+.editInput {
+    border: none;
+    background-color: hotpink;
+    width: 80%;
+}

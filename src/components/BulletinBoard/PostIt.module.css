@@ -1,0 +1,19 @@
+.postIt{
+    transition: all 0.1s ease-out;
+    overflow: hidden;
+    user-select: none;
+}
+.tab {
+    position: relative;
+    top: -23px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+.icon{
+    margin-right: 0.2em;
+}
+.content{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+}
