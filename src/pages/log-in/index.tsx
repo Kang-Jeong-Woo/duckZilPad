@@ -1,14 +1,20 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import Login from "@/components/Login/Login";
-import MainPage from "@/components/Main/MainPage";
+import SignUp from "@/components/Login/SignUp";
 import Container from "@/components/UI/Container";
+import { useAppSelector } from '@/store/hooks';
+import { RootState } from '@/store/store';
 
-export default function Home() {
-    return (
-        <>
+const LogInPage = () => {
+
+    const loginMode = useAppSelector((state: RootState) => state.mode.loginMode);
+
+    return(
+
+        <Container>
             <Head>
                 <meta charSet="utf-8"/>
-                <title>DuckZil Pad | Home</title>
+                <title>DuckZil Pad | Log-in</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
                 <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>
@@ -18,11 +24,13 @@ export default function Home() {
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                 <meta name="theme-color" content="#111111"/>
             </Head>
-            <main>
-                <Container>
-                    <MainPage></MainPage>
-                </Container>
-            </main>
-        </>
-)
+            { loginMode.isLogin ?
+                <Login />
+                :
+                <SignUp />
+            }   
+        </Container>
+    )
 }
+
+export default LogInPage

@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import {Provider} from "react-redux";
-import store from "@/store";
+import store from "@/store/store";
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import {BindingSpring} from "@/components/UI/BindingSpring";
