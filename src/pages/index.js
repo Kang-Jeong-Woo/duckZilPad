@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Login from "@/components/Login/Login";
 import MainPage from "@/components/Main/MainPage";
 import Container from "@/components/UI/Container";
 

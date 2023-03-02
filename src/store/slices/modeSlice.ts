@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface modeState {
-    loginMode: { isLogin:boolean, isSignUp:boolean }
+    loginMode: { 
+        isLogin:boolean, 
+        isSignUp:boolean 
+    }
 }
 
 const initialState: modeState = {
-    loginMode: { isLogin: true, isSignUp: false }
+    loginMode: { 
+        isLogin: true, 
+        isSignUp: false 
+    }
 }
 
 export const modeSlice = createSlice({

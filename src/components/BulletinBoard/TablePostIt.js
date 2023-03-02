@@ -2,7 +2,7 @@ import {Rnd} from "react-rnd";
 import {useRef, useState} from "react";
 import classes from "./TablePostIt.module.css";
 import {useDispatch} from "react-redux";
-import {tableActions} from "@/store/table-slice";
+import {tableActions} from "@/store/slices/table-slice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCircleXmark,

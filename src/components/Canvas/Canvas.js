@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import CanvasDraw from "react-canvas-draw";
 import classes from "./Canvas.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {canvasActions} from "@/store/canvas-slice";
+import {canvasActions} from "@/store/slices/canvas-slice";
 import {
     faPen,
     faPalette,

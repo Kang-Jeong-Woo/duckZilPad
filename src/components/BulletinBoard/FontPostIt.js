@@ -2,12 +2,13 @@ import {Rnd} from "react-rnd";
 import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
 import {useDispatch} from "react-redux";
-import {fontActions} from "@/store/font-slice";
+import {fontActions} from "@/store/slices/font-slice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 
 
 const FontPostIt = (props) => {
+    
     const tabRef = useRef(undefined);
     const borderRef = useRef(undefined);
     const [dragable, setDragable] = useState(false);

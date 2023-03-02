@@ -1,6 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
+export interface canvasState {
+    isInit: boolean,
+    drawingOn: boolean,
+    color: string,
+    radius: number,
+    drawData: {userId:string, drawData?:string},
+}
+
+const initialState: canvasState = {
+    isInit: true,
     drawingOn: true,
     color: "#ffffff",
     radius: 1,
@@ -8,7 +17,7 @@ const initialState = {
 };
 
 const canvasSlice = createSlice({
-    name: "palette",
+    name: "canvas",
     initialState,
     reducers: {
         setColor(state, action) {
@@ -23,7 +32,7 @@ const canvasSlice = createSlice({
         },
         setDrawData(state, action) {
             if (state.isInit) {
-                state.dawData = action.payload;
+                state.drawData = action.payload;
                 state.isInit = false;
             }
             return
@@ -39,4 +48,4 @@ const canvasSlice = createSlice({
 });
 
 export const canvasActions = canvasSlice.actions;
-export default canvasSlice;
+export default canvasSlice.reducer;

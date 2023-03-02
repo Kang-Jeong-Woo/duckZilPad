@@ -1,28 +1,27 @@
-'use client';
 import styled from "styled-components";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store/store";
+import { useEffect } from "react";
+import { RootState } from "@/store/store";
 import { 
     setSignUpData,
     userIdCheck,
     passwordCheck,
-    nickCheck } from "../store/slices/signUpSlice";
-import { setLoginMode } from "../store/slices/modeSlice";
-import SubmitBtn from "@/app/components/UI/SubmitBtn";
-import Logo from "./UI/Logo";
-import { useEffect } from "react";
+    nickCheck } from "@/store/slices/signUpSlice";
+import { setLoginMode } from "@/store/slices/modeSlice";
+import DoddleBtn from "@/components/UI/DoddleBtn";
+import Logo from "@/components/UI/Logo";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 export default function signUp () {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     // 회웝가입 데이터
-    const signUpData = useSelector((state: RootState)=> state.signUp.signUpData);
+    const signUpData = useAppSelector((state: RootState)=> state.signUp.signUpData);
     // 회원가입 메세지
-    const signUpMessage = useSelector((state: RootState)=> state.signUp.meassage);
+    const signUpMessage = useAppSelector((state: RootState)=> state.signUp.meassage);
     // 회원가입 유효성검사 결과
-    const signUpValidation = useSelector((state: RootState)=> state.signUp.validation);
+    const signUpValidation = useAppSelector((state: RootState)=> state.signUp.validation);
 
     // 서버에 회원가입 요청
     const signUp = () => {
@@ -128,7 +127,7 @@ export default function signUp () {
                 <Wrapper>
                     <ModeMessage>Already have an account?</ModeMessage>
                     <ModeBtn onClick={()=>{dispatch(setLoginMode())}}>Log-in</ModeBtn>
-                    <SubmitBtn onClick={()=>{
+                    <DoddleBtn onClick={()=>{
                         if(signUpValidation.isUserId && signUpValidation.isPassword && signUpValidation.isNick) {
                             signUp()
                         } else {
@@ -136,7 +135,7 @@ export default function signUp () {
                             dispatch(passwordCheck())
                             dispatch(nickCheck())
                         }
-                    }}>Sign-up</SubmitBtn>
+                    }}>Sign-up</DoddleBtn>
                 </Wrapper>
             </Container>
         </Body>

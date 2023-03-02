@@ -3,7 +3,7 @@ import {useRef, useState} from "react";
 import {Rnd} from "react-rnd";
 import Image from "next/image";
 import {useDispatch} from "react-redux";
-import {postItActions} from "@/store/postIt-slice";
+import {postItActions} from "@/store/slices/postIt-slice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 
@@ -38,11 +38,11 @@ const PostIt = props => {
     const dragStart = (e, d, id = props.id) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
-        const Z = {id: id, z: setIndex, colName: "postIts"};
+        const Z = {id: id, z: setIndex, colName: "postItsData"};
         updateZIndex(Z);
     }
     const dragStop = (e, d, id = props.id) => {
-        const XY = {id: id, x: d.x, y: d.y, colName: "postIts"}
+        const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
         updateXYPosition(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
@@ -55,7 +55,7 @@ const PostIt = props => {
     const resizeStop = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postIts"}
+        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
         updateWHPosition(XYHW);
     }
 
