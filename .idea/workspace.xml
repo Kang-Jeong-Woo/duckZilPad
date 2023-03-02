@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee2d90d4-5cd2-4fad-ac29-4aca229e20c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Draw.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Draw.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Font.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Font.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zzang/WebstormProjects/duckzilpad",
+    "last_opened_file_path": "C:/Users/zzang/WebstormProjects/notepadproject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,7 +60,8 @@
       <workItem from="1677670827519" duration="1998000" />
       <workItem from="1677676469341" duration="627000" />
       <workItem from="1677720415405" duration="925000" />
-      <workItem from="1677721352358" duration="2756000" />
+      <workItem from="1677721352358" duration="6705000" />
+      <workItem from="1677731738639" duration="20000" />
     </task>
     <servers />
   </component>

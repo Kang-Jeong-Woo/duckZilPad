@@ -183,7 +183,7 @@ const Input = styled.input`
     display: inline-block;
     border: 0px;
     border-bottom: 1px solid gray;
-    width: ${props => props.placeholder === "User-Id" && '140px' };
+    width: ${props => props.placeholder === "User.ts-Id" && '140px' };
 `
 
 const CheckBtn = styled.span`

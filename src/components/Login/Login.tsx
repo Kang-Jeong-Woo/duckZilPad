@@ -38,7 +38,7 @@ export default function Login() {
               })
             .catch((error)=>{
                 console.log(error)
-                setLoginMessage("User-id or password do not match.")
+                setLoginMessage("User.ts-id or password do not match.")
             });
         }
     }

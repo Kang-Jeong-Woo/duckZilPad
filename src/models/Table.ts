@@ -1,11 +1,10 @@
-interface Font {
+interface Table {
     userId: String,
     contents: Object,
     pinned: Boolean,
     isDelete: Boolean,
     style: Object,
-    degree:Number,
-    color: String,
+    color: Object,
     width: Number,
     height: Number,
     positionX: Number,
@@ -13,4 +12,4 @@ interface Font {
     positionZ: Number,
 }
 
-export default Font;
+export default Table

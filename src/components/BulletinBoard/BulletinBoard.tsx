@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 const BulletinBoard:React.FC<{
 
 }> = (props) => {
-    const tableData = useSelector(state => (state.table.tableData))
+    const tableData = useSelector(state: => (state.table.tableData))
     return(
         <div>
 
