@@ -49,16 +49,16 @@ export const signUpSlice = createSlice({
         userIdCheck: (state, action: PayloadAction<string>) => {
             if(state.signUpData.userId === "" || state.signUpData.userId === undefined) {
                 state.validation.isUserId = false
-                state.meassage.passwordMessage = "Please enter user-id."
+                state.meassage.userIdMessage = "Please enter user-id."
             } else if(state.signUpData.userId.length < 2 || state.signUpData.userId.length >= 10) {
                 state.validation.isUserId = false
-                state.meassage.passwordMessage = "Please enter at least 2 and no more than 10."
+                state.meassage.userIdMessage = "Please enter at least 2 and no more than 10."
             } else if(state.signUpData.userId === action.payload) {
-                state.validation.isUserId = true
-                state.meassage.passwordMessage = "Not duplicate user-id."
-            } else if(action.payload === undefined || action.payload === null) {
                 state.validation.isUserId = false
-                state.meassage.passwordMessage = "Duplicate user-id."
+                state.meassage.userIdMessage = "Duplicate user-id."
+            } else if(action.payload === undefined || action.payload === null || action.payload === "") {
+                state.validation.isUserId = true
+                state.meassage.userIdMessage = "Not duplicate user-id."
             }
         },
         passwordCheck: (state) => {
