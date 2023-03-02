@@ -2,15 +2,15 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store/store";
+import { RootState } from "@/store/store";
 import { 
     setSignUpData,
     userIdCheck,
     passwordCheck,
-    nickCheck } from "../store/slices/signUpSlice";
-import { setLoginMode } from "../store/slices/modeSlice";
+    nickCheck } from "@/store/slices/signUpSlice";
+import { setLoginMode } from "@/store/slices/modeSlice";
 import SubmitBtn from "@/app/components/UI/SubmitBtn";
-import Logo from "./UI/Logo";
+import Logo from "@/UI/Logo";
 import { useEffect } from "react";
 
 export default function signUp () {
