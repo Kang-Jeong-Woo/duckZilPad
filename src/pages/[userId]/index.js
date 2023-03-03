@@ -10,7 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import {userActions} from "@/store/slices/user-slice";
-
+import { getCookie } from "@/util/cookie";
 
 function HomePage() {
     const router = useRouter();
@@ -20,11 +20,11 @@ function HomePage() {
     // 데이터셋
     const [user, setUser] = useState();   
     const [drawData, setDrawData] = useState()
-
     // 로그인 성공시 데이터 가져오기 
     useEffect(() => {
         try {
-            axios.get("http://localhost:8123/api/login/success", { withCredentials: true })
+            axios.post("/api/login/success",
+            {accessToken: getCookie("accessToken")})
             .then((result) => {
               if (result.data) {
                 setIsLogin(true);

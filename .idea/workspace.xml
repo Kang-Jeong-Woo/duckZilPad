@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="ee2d90d4-5cd2-4fad-ac29-4aca229e20c1" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/store/slices/font-slice.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/store/slices/img-slice.ts" afterDir="false" />
@@ -50,6 +51,9 @@
       <change beforePath="$PROJECT_DIR$/src/store/slices/user-slice.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
     </list>
+=======
+    <list default="true" id="ee2d90d4-5cd2-4fad-ac29-4aca229e20c1" name="Changes" comment="" />
+>>>>>>> 6311b36c130e8841fd0553422da0f88a27df79ea
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +75,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;C:/Users/zzang/WebstormProjects/notepadproject&quot;,
+=======
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zzang/WebstormProjects/duckzilpad&quot;,
+>>>>>>> 6311b36c130e8841fd0553422da0f88a27df79ea
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -100,7 +108,11 @@
       <workItem from="1677720415405" duration="925000" />
       <workItem from="1677721352358" duration="6705000" />
       <workItem from="1677731738639" duration="20000" />
+<<<<<<< HEAD
       <workItem from="1677801633604" duration="4118000" />
+=======
+      <workItem from="1677734271334" duration="1198000" />
+>>>>>>> 6311b36c130e8841fd0553422da0f88a27df79ea
     </task>
     <servers />
   </component>

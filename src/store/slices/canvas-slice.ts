@@ -39,7 +39,7 @@ const canvasSlice = createSlice({
             }
             return
         },
-        clear() {
+        canvasClear() {
             return initialState
         }
     }

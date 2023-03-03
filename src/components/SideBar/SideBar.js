@@ -7,6 +7,7 @@ import {fontActions} from "@/store/slices/font-slice";
 import {postItActions} from "@/store/slices/postIt-slice";
 import {canvasActions} from "@/store/slices/canvas-slice";
 import {addMenuActions} from "@/store/slices/addMenu-slice";
+import {userActions} from "@/store/slices/user-slice"
 import Modal from "@/components/UI/Modal";
 import PostItForm from "@/components/Form/PostItForm";
 import TableForm from "@/components/Form/TableForm";
@@ -17,6 +18,7 @@ import axios from "axios";
 import {useRouter} from "next/router";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Modal2 from "@/components/UI/Modal2";
+import { removeCookie } from "@/util/cookie";
 // import {router} from "next/client";
 
 
@@ -24,7 +26,7 @@ const SideBar = (props) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const userRef = useRef();
-    const addMenu = useSelector(state => state.add);
+    const addMenu = useSelector(state => state.addMenu);
     const [showModal, setShowModal] = useState(false);
 
     const setFont = () => {
@@ -51,21 +53,15 @@ const SideBar = (props) => {
     }
 
     const logout = () => {
-        axios.post(
-            "http://localhost:8123/api/logout",
-            {withCredentials: true}
-        ).then((result) => {
-            if (result.status === 200) {
-                dispatch(tableActions.tableClear());
-                dispatch(fontActions.fontClear());
-                dispatch(postItActions.postItClear());
-                dispatch(canvasActions.canvasClear());
-                router.push("/");
-            }
-        })
-            .catch((error) => {
-                console.log(error)
-            });
+
+        removeCookie("accessToken");
+        dispatch(tableActions.tableClear());
+        dispatch(fontActions.fontClear());
+        dispatch(postItActions.postItClear());
+        dispatch(canvasActions.canvasClear());
+        dispatch(userActions.userClear());
+        router.push("/");
+  
     }
 
     return (

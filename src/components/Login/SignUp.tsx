@@ -26,11 +26,11 @@ export default function signUp () {
     // 서버에 회원가입 요청
     const signUp = () => {
         axios.post(
-            "http://localhost:8123/api/signup",
-            { userId: signUpData.userId, password: signUpData.password, nick: signUpData.nick },
-            { withCredentials: true }
+            "/api/signup",
+            { userId: signUpData.userId, password: signUpData.password, nick: signUpData.nick }
         )
         .then((result) => {
+            console.log(result)
             if (result.status === 200) {
                 console.log(result.data)
                 dispatch(setLoginMode())
@@ -45,18 +45,20 @@ export default function signUp () {
     // 서버에 아이디 중복체크 요청
     const idCheck = () => {
         axios.get(
-            "http://localhost:8123/api/signup/idcheck",
-            { params: { userId: signUpData.userId }, withCredentials: true },
+            "/api/signup/idcheck",
+            { params: { userId: signUpData.userId } },
         )
         .then((result) => {
-            if (result.status === 200) {
-                console.log(result.data)
+            console.log(result.data)
+            if (result.data) {
+                dispatch(userIdCheck(result.data))
+            } else {
                 dispatch(userIdCheck(result.data))
             }
         })
         .catch((error)=>{
             console.log(error)
-        });
+        })
     }
 
     // 데이터가 바뀌면 유효성검사
@@ -64,7 +66,7 @@ export default function signUp () {
         if(signUpData.passwordConfim !== undefined || signUpData.password !== undefined) {
             dispatch(passwordCheck())
         }
-    }, [signUpData.password])
+    }, [signUpData.password, signUpData.passwordConfim])
 
     useEffect(()=>{
         if(signUpData.nick !== undefined) {
@@ -211,7 +213,7 @@ const CheckBtn = styled.span`
 `
 
 const SignUpMessage = styled.p`
-    color: "red";
+    color: red;
     display: block;
     text-align: left;
     padding-left: 60px;
