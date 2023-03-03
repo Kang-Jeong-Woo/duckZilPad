@@ -30,10 +30,10 @@ const TablePostIt: React.FC<{
     const tabRef = useRef<HTMLSpanElement>(null);
     const [isEdit, setIsEdit] = useState<boolean>(false);
     const [draggable, setDraggable] = useState<boolean>(false);
-    const [diagramWidth, setDiagramWidth] = useState<string>("0");
-    const [diagramHeight, setDiagramHeight] = useState<string>("0");
-    const [picWidth, setPicWidth] = useState<number>(0);
-    const [picHeight, setPicHeight] = useState<number>(0);
+    const [diagramWidth, setDiagramWidth] = useState<number>();
+    const [diagramHeight, setDiagramHeight] = useState<number>();
+    const [picWidth, setPicWidth] = useState<number>();
+    const [picHeight, setPicHeight] = useState<number>();
     const [isFirstLoad, setFirstLoad] = useState<boolean>(true);
     const setZIndex = (cur:number, next:number) => {
         return next > cur ? next : cur;
@@ -56,8 +56,8 @@ const TablePostIt: React.FC<{
         setFirstLoad(false);
         setPicWidth(+ref.style.width.replace("px", ""));
         setPicHeight(+ref.style.height.replace("px", ""));
-        setDiagramWidth(ref.style.width);
-        setDiagramHeight(ref.style.height);
+        setDiagramWidth(+ref.style.width);
+        setDiagramHeight(+ref.style.height);
     }
     const resizeStop:RndResizeCallback = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
@@ -155,14 +155,14 @@ const TablePostIt: React.FC<{
              onResizeStop={resizeStop}
              style={{zIndex: props.positionZ}}
         >
-            <PostIt style={{width: diagramWidth, height: diagramHeight + 23}}
+            <PostIt style={{width: diagramWidth, height: diagramHeight! + 23}}
                  onMouseEnter={mouseIn} onMouseLeave={mouseOut}>
                 <WindowTab ref={tabRef}>
                     {isEdit ? editComponent : defaultComponent}
                 </WindowTab>
                 <UserTable style={{
-                    width: isFirstLoad ? props.width : +picWidth,
-                    height: isFirstLoad ? props.height : +picHeight - 23,
+                    width: isFirstLoad ? props.width : +picWidth!,
+                    height: isFirstLoad ? props.height : +picHeight! - 23,
                     background: props.color.back,
                     color: props.color.font,
                     border: `${props.color.border} 2px solid`,

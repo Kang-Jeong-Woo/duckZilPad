@@ -112,8 +112,8 @@ const Canvas: React.FC<{
                     <label htmlFor={"save"}></label>
                     <SaveIcon ref={saveRef}>Save</SaveIcon>
                 </SaveWrapper>
-
             </div>
+
             <CanvasDraw
                 ref={canvasRef}
                 saveData={canvasData.drawData.drawData}
@@ -128,10 +128,11 @@ const Canvas: React.FC<{
                 catenaryColor={"#0a0302"}
                 immediateLoading={true}
             />
+
         </>
     )
 }
-export default Canvas;
+export default React.memo(Canvas);
 const hovering = keyframes`
   0% {
     -webkit-transform: translate(0);

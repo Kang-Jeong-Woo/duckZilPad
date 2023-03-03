@@ -16,6 +16,7 @@ const BulletinBoard: React.FC<{}> = (props) => {
     return (
         <Body>
             <BulletinBoardCntnr>
+                <Canvas/>
                 {ImgsData.map((img) => (
                     img.isDelete === false && <ImgPostIt
                         key={img._id}
@@ -61,7 +62,6 @@ const BulletinBoard: React.FC<{}> = (props) => {
                         positionZ={table.positionZ}
                     />
                 ))}
-                <Canvas/>
             </BulletinBoardCntnr>
         </Body>
     )

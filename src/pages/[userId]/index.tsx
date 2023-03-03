@@ -11,6 +11,7 @@ import {canvasActions} from "@/store/slices/canvas-slice";
 import {getCookie, setCookie} from "@/lib/cookie";
 import {useAppDispatch} from "@/store/hooks";
 import {ImgActions} from "@/store/slices/img-slice";
+import {MongoClient} from "mongodb";
 
 function HomePage() {
     const dispatch = useAppDispatch();
