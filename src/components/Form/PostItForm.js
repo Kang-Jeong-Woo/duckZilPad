@@ -1,12 +1,11 @@
 import {useMemo, useRef, useState} from "react";
-import {postItActions} from "@/store/postIt-slice";
-import {addActions} from "@/store/addMenu-slice";
+import {postItActions} from "@/store/slices/postIt-slice";
+import {addMenuActions} from "@/store/slices/addMenu-slice";
 import { useDispatch } from "react-redux";
 import ShowFileImage from "@/components/Form/ShowFileImage";
 import classes from "./Form.module.css";
 import axios from "axios";
 import path from "path";
-import Image from "next/image";
 
 const PostItForm = (props) => {
     const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const PostItForm = (props) => {
 
     const userId = props.userId
     const addPostIt= (data)=>{dispatch(postItActions.addPostIt(data))};
-    const close = () => {dispatch(addActions.close())};
+    const close = () => {dispatch(addMenuActions.close())};
 
     const handleClickFileInput = () => {
         fileInputRef.current.click();
@@ -66,13 +65,13 @@ const PostItForm = (props) => {
                 { withCredentials: true }
             )
             .then((result) => {
-                // console.log(result)
+                console.log(result)
             })
             .catch((error) => {
-                // console.log(error);
+                console.log(error);
             });
         } catch (error) {
-            // console.log(error);
+            console.log(error);
         }
 
         close();

@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
-import { tableActions } from "@/store/table-slice";
+import { tableActions } from "@/store/slices/table-slice";
 import classes from "./Form.module.css";
 import styled from "styled-components";
 

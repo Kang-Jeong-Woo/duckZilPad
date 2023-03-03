@@ -1,6 +1,6 @@
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
-import {fontActions} from "@/store/font-slice";
+import {fontActions} from "@/store/slices/font-slice";
 import classes from "./Form.module.css";
 
 const FontSection = (props) => {
@@ -13,7 +13,7 @@ const FontSection = (props) => {
         event.preventDefault();
         if(inputRef.current.value.trim().length !== 0 && styleRef.current.value !== "Choose the font."){
             const data = {
-                id: props.userId,
+                userId: props.userId,
                 content: inputRef.current.value,
                 style: styleRef.current.value,
                 color: colorRef.current.value

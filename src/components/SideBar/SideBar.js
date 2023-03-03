@@ -2,15 +2,15 @@ import classes from "./SideBar.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImage, faTable, faFont, faUser} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {tableActions} from "@/store/table-slice";
-import {fontActions} from "@/store/font-slice";
-import {postItActions} from "@/store/postIt-slice";
-import {canvasActions} from "@/store/canvas-slice"
+import {tableActions} from "@/store/slices/table-slice";
+import {fontActions} from "@/store/slices/font-slice";
+import {postItActions} from "@/store/slices/postIt-slice";
+import {canvasActions} from "@/store/slices/canvas-slice";
+import {addMenuActions} from "@/store/slices/addMenu-slice";
 import Modal from "@/components/UI/Modal";
 import PostItForm from "@/components/Form/PostItForm";
 import TableForm from "@/components/Form/TableForm";
 import FontSection from "@/components/Form/FontPoistItForm";
-import {addActions} from "@/store/addMenu-slice";
 import {useEffect, useRef, useState} from "react";
 import Button from "@/components/UI/Button";
 import axios from "axios";
@@ -28,17 +28,17 @@ const SideBar = (props) => {
     const [showModal, setShowModal] = useState(false);
 
     const setFont = () => {
-        dispatch(addActions.setFont())
+        dispatch(addMenuActions.setFont())
     }
     const setPost = () => {
-        dispatch(addActions.setPost())
+        dispatch(addMenuActions.setPost())
         // setShowModal(true);
     }
     const setTable = () => {
-        dispatch(addActions.setTable())
+        dispatch(addMenuActions.setTable())
     }
     const close = () => {
-        dispatch(addActions.close())
+        dispatch(addMenuActions.close())
     }
 
     const mouseEnter = () => {
@@ -56,10 +56,10 @@ const SideBar = (props) => {
             {withCredentials: true}
         ).then((result) => {
             if (result.status === 200) {
-                dispatch(tableActions.clear());
-                dispatch(fontActions.clear());
-                dispatch(postItActions.clear());
-                dispatch(canvasActions.clear());
+                dispatch(tableActions.tableClear());
+                dispatch(fontActions.fontClear());
+                dispatch(postItActions.postItClear());
+                dispatch(canvasActions.canvasClear());
                 router.push("/");
             }
         })

@@ -3,13 +3,13 @@ import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
 import styles from "@/styles/Home.module.css"
 import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
-import {tableActions} from "@/store/table-slice";
-import {fontActions} from "@/store/font-slice";
-import {postItActions} from "@/store/postIt-slice";
+import {tableActions} from "@/store/slices/table-slice";
+import {fontActions} from "@/store/slices/font-slice";
+import {postItActions} from "@/store/slices/postIt-slice";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import {userActions} from "@/store/user-slice";
+import {userActions} from "@/store/slices/user-slice";
 
 
 function HomePage() {

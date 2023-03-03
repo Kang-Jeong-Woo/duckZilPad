@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
-import {addActions} from "@/store/addMenu-slice";
+import {addMenuActions} from "@/store/slices/addMenu-slice";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import {CSSTransition, Transition} from "react-transition-group";
@@ -35,7 +35,7 @@ const transitionStyles = {
 const Backdrop = (props) => {
     const dispatch = useDispatch();
     const close = () => {
-        dispatch(addActions.close())
+        dispatch(addMenuActions.close())
     };
     const onClose = (event) => {
         event.preventDefault();

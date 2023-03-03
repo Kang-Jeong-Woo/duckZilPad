@@ -1,13 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
+
+export interface addMenuState {
+    modal: boolean,
+    font: boolean,
+    post: boolean,
+    table: boolean
+}
+
+const initialState: addMenuState = {
     modal: false,
     font: false,
     post: false,
     table: false
 };
 
-const addSlice = createSlice({
+const addMenuSlice = createSlice({
     name: "addMenu",
     initialState,
     reducers: {
@@ -38,5 +46,5 @@ const addSlice = createSlice({
     }
 });
 
-export const addActions = addSlice.actions;
-export default addSlice;
+export const addMenuActions = addMenuSlice.actions;
+export default addMenuSlice.reducer;

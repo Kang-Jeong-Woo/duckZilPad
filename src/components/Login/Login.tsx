@@ -1,4 +1,3 @@
-'use client';
 import styled from "styled-components";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
@@ -33,6 +32,7 @@ export default function Login() {
             ).then((result) => {
                 if (result.status === 200) {
                     console.log(result.data)
+                    localStorage.setItem("userId", JSON.stringify(loginData.userId));
                     router.push("/" + loginData.userId)
                 }
               })

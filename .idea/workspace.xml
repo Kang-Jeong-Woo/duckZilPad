@@ -5,12 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee2d90d4-5cd2-4fad-ac29-4aca229e20c1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/slices/font-slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/slices/img-slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/slices/table-slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/slices/user-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.module.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/FontPostIt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/FontPostIt.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/PostIt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/PostIt.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/TablePostIt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BulletinBoard/TablePostIt.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Canvas/Canvas.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Canvas/Canvas.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/FontPoistItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/FontPoistItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/PostItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/PostItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/TableForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/TableForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Draw.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Draw.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Font.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Font.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Draw.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Font.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Img.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Table.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/User.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/[userId]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/[userId]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/[userId]/lab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/[userId]/lab.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/rootReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/addMenu-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/addMenu-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/canvas-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/canvas-slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/font-slice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/modeSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/modeSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/postIt-slice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/table-slice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/user-slice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,22 +66,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zzang/WebstormProjects/notepadproject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\zzang\\WebstormProjects\\duckzilpad\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zzang/WebstormProjects/notepadproject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\zzang\\WebstormProjects\\duckzilpad\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zzang\WebstormProjects\duckzilpad\src\components\BulletinBoard" />
@@ -62,6 +100,7 @@
       <workItem from="1677720415405" duration="925000" />
       <workItem from="1677721352358" duration="6705000" />
       <workItem from="1677731738639" duration="20000" />
+      <workItem from="1677801633604" duration="4118000" />
     </task>
     <servers />
   </component>
@@ -70,7 +109,6 @@
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/components/Login/Login.js" />
-        <option value="$PROJECT_DIR$/src/components/BulletinBoard/BulletinBoard.js" />
       </list>
     </option>
   </component>
