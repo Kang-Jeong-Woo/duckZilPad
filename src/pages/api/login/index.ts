@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.status(200).json({ success: true, accessToken, refreshToken });
         } catch (err) {
           console.log(err);
-          res.status(500).json({ success: false, message: "토큰 서명에 실패했습니다." });
+          res.status(500).json({ success: false, message: "Token signing failed." });
         }
       } else {
         res.status(403).json({ success: false, message: "Not Authorized"});

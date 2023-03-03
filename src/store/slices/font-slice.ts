@@ -18,7 +18,7 @@ export interface fontDataState {
     height: number,
     positionX: number,
     positionY: number,
-    positionZ: number
+    positionZ: number,
 }
 
 const initialState: fontState = {isInit:true, fontData:[]};
@@ -46,8 +46,8 @@ const fontSlice = createSlice({
                 style: action.payload.style,
                 degree: 0,
                 color:action.payload.color,
-                width: 300,
-                height: 200,
+                width: 150,
+                height: 150,
                 positionX: 0,
                 positionY: 0,
                 positionZ: 10

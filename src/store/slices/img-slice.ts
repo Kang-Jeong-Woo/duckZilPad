@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-export interface ImgState {
+export interface imgState {
     isInit: boolean,
-    ImgData: ImgDataState[]
+    imgData: imgDataState[]
 }
 
-export interface ImgDataState {
+export interface imgDataState {
     _id: string,
     userId: string,
     content: string,
@@ -17,19 +17,19 @@ export interface ImgDataState {
     height: number,
     positionX: number,
     positionY: number,
-    positionZ: number
+    positionZ: number,
 }
 
-const initialState: ImgState = {isInit: true, ImgData: []}
+const initialState: imgState = {isInit: true, imgData: []}
 
 const ImgSlice = createSlice({
-    name: "postIt",
+    name: "img",
     initialState,
     reducers: {
-        setImg(state, action:PayloadAction<ImgDataState[]>) {
+        setImg(state, action:PayloadAction<imgDataState[]>) {
             if (state.isInit) {
-                action.payload.map(postItData => {
-                    state.ImgData.push(postItData)
+                action.payload.map(imgData => {
+                    state.imgData.push(imgData)
                 });
                 state.isInit = false;
             }
@@ -37,7 +37,7 @@ const ImgSlice = createSlice({
         },
         addImg(state, action:PayloadAction<{userId: string, title: string, content: string}>) {
 
-            const postItDefaultData = {
+            const imgDefaultData = {
                 _id: String(Math.random()),
                 positionX: 0,
                 positionY: 0,
@@ -51,25 +51,25 @@ const ImgSlice = createSlice({
                 title:action.payload.title,
                 content: action.payload.content
             }
-            state.ImgData.push(postItDefaultData);
+            state.imgData.push(imgDefaultData);
 
         },
         deleteImg(state, action:PayloadAction<string>) {
-            const editAry = state.ImgData.find((postIt) => postIt._id === action.payload);
+            const editAry = state.imgData.find((img) => img._id === action.payload);
             if(editAry !== undefined) {
                 editAry.isDelete = true
             }
         },
         updateZIndex(state, action:PayloadAction<{id: string, z: number, colName: string}>){
             const newData = action.payload;
-            const editAry = state.ImgData.find((postIt) => postIt._id === newData.id);
+            const editAry = state.imgData.find((img) => img._id === newData.id);
             if(editAry !== undefined) {
                 editAry.positionZ=newData.z
             }  
         },
         updateXYPosition(state, action:PayloadAction<{id: string, x: number, y: number, colName: string}>){
             const newData = action.payload;
-            const editAry = state.ImgData.find((postIt) => postIt._id === newData.id);
+            const editAry = state.imgData.find((img) => img._id === newData.id);
             if(editAry !== undefined) {
                 editAry.positionX=newData.x
                 editAry.positionY=newData.y
@@ -77,7 +77,7 @@ const ImgSlice = createSlice({
         },
         updateWHPosition(state, action:PayloadAction<{id: string, x: number, y: number, h: number, w: number, colName: string}>){
             const newData = action.payload;
-            const editAry = state.ImgData.find((postIt) => postIt._id === newData.id);
+            const editAry = state.imgData.find((img) => img._id === newData.id);
             if(editAry !== undefined) {
                 editAry.positionX=newData.x
                 editAry.positionY=newData.y

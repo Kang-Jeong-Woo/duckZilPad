@@ -52,7 +52,7 @@ const ImgAddForm:React.FC = () => {
             const formData = new FormData()
             formData.set('image', uploadedImage, fileName)
             try {
-                axios.post("여기에 URL 넣으면 됨",
+                axios.post("/api/upload/img",
                     formData,
                     { withCredentials: true }
                 )

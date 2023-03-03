@@ -1,20 +1,20 @@
 .springHeader{
-  position: relative;
-  max-height: 30px;
+    position: relative;
+    max-height: 30px;
 }
 .content_bg{
 
 }
 .homepage {
-  display: flex;
-  width: 100%;
-  height: 100vh;
+    display: flex;
+    width: 100%;
+    height: 100vh;
 }
 
 .homeCtnr{
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  align-items: stretch;
-  /*height: 100%;*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    align-items: stretch;
+    /*height: 100%;*/
 }

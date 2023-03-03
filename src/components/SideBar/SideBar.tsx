@@ -25,7 +25,7 @@ const SideBar:React.FC<{}> = () => {
     const addMenu = useAppSelector((state: RootState) => state.addMenu);
     const userNickName = useAppSelector((state: RootState) => state.user.userData.nick);
     const setFont = () => {dispatch(addMenuActions.setFont())}
-    const setPost = () => {dispatch(addMenuActions.setPost())}
+    const setPost = () => {dispatch(addMenuActions.setImg())}
     const setTable = () => {dispatch(addMenuActions.setTable())}
     const modalClose = () => {dispatch(addMenuActions.close())}
     const mouseEnter = () => {
@@ -67,8 +67,8 @@ const SideBar:React.FC<{}> = () => {
 
                 <li onClick={setPost}>
                     <FontAwesomeIcon icon={faImage}/>
-                    {addMenu.modal && addMenu.post &&
-                        <Modal onClose={modalClose}><FontAddForm/></Modal>}
+                    {addMenu.modal && addMenu.img &&
+                        <Modal onClose={modalClose}><ImgAddForm/></Modal>}
                 </li>
                 {/*<CSSTransition in={showModal} timeout={500} mountOnEnter unmountOnExit classNames={"myclass"}>*/}
                 {/*    <Modal onClose={close}><PostItForm userId={props.user.userId}/></Modal>*/}
@@ -83,7 +83,7 @@ const SideBar:React.FC<{}> = () => {
                 <li onClick={setFont}>
                     <FontAwesomeIcon icon={faFont}/>
                     {addMenu.modal && addMenu.font &&
-                        <Modal onClose={modalClose}><ImgAddForm/></Modal>}
+                        <Modal onClose={modalClose}><FontAddForm/></Modal>}
                 </li>
 
             </ul>

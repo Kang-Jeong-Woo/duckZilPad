@@ -11,8 +11,13 @@ import {
     faPalette,
     faPen
 } from "@fortawesome/free-solid-svg-icons";
-import CanvasDraw, {CanvasDrawProps} from "react-canvas-draw";
+import CanvasDraw from "react-canvas-draw";
 import styled, {keyframes} from "styled-components";
+import axios from "axios";
+import { getCookie } from "@/lib/cookie";
+import { tableActions } from "@/store/slices/table-slice";
+import { fontActions } from "@/store/slices/font-slice";
+import {ImgActions} from "@/store/slices/img-slice";
 
 const Canvas: React.FC<{
 }> = () => {
@@ -23,11 +28,10 @@ const Canvas: React.FC<{
     const [canvasWidth, setCanvasWidth] = useState(1920);
     const [canvasHeight, setCanvasHeight] = useState(937);
     const canvasData = useAppSelector((state:RootState) => state.canvas);
-    const imgData = useAppSelector((state:RootState)=>state.img.ImgData);
+    const imgData = useAppSelector((state:RootState)=>state.img.imgData);
     const fontData = useAppSelector((state:RootState)=>state.font.fontData);
     const tableData = useAppSelector((state:RootState)=>state.table.tableData);
     const userId = useAppSelector((state:RootState)=>state.user.userData.userId);
-    // let canvasRef:any
     const setHeight = () => Math.ceil(window.innerHeight - 70);
     const setWidth = () => Math.ceil(window.innerWidth);
     const eraseAll = () => {
@@ -46,7 +50,31 @@ const Canvas: React.FC<{
     const onSaveDB = () => {
         const drawData = {userId:userId, drawData:canvasRef.current!.getSaveData()}
         try {
-            console.log(imgData, tableData, fontData, drawData);
+            axios.post(
+              "/api/savedata",
+              { accessToken: getCookie("accessToken"), 
+                tableData: tableData, imgData: imgData, fontData: fontData, drawData: drawData})
+            .then((result) => {
+              if (result.status === 200) {
+                  console.log(result.data)
+                  dispatch(tableActions.tableClear());
+                  dispatch(fontActions.fontClear());
+                  dispatch(ImgActions.ImgClear());
+                  dispatch(canvasActions.canvasClear());
+                  axios.post(
+                    "/api/savedata/success",
+                    { accessToken: getCookie("accessToken") })
+                  .then((result)=>{
+                    dispatch(tableActions.setTable(result.data.tableData));
+                    dispatch(fontActions.setFont(result.data.fontData));
+                    dispatch(ImgActions.setImg(result.data.imgData));
+                    dispatch(canvasActions.setDrawData(result.data.drawData));
+                  })
+                  .catch((error)=>{
+                    console.log(error)
+                  })
+              }
+            })
         } catch (error) {
             alert("ask 4 manager")
         }

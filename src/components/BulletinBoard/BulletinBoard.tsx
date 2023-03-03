@@ -8,15 +8,13 @@ import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
 
 const BulletinBoard: React.FC<{}> = (props) => {
-
     const tablesData = useAppSelector((state: RootState) => state.table.tableData);
     const fontsData = useAppSelector((state: RootState) => state.font.fontData);
-    const ImgsData = useAppSelector((state: RootState) => state.img.ImgData);
+    const ImgsData = useAppSelector((state: RootState) => state.img.imgData);
 
     return (
         <Body>
             <BulletinBoardCntnr>
-                <Canvas/>
                 {ImgsData.map((img) => (
                     img.isDelete === false && <ImgPostIt
                         key={img._id}
@@ -62,10 +60,12 @@ const BulletinBoard: React.FC<{}> = (props) => {
                         positionZ={table.positionZ}
                     />
                 ))}
+                <Canvas />
             </BulletinBoardCntnr>
         </Body>
     )
 };
+
 export default BulletinBoard;
 const Body = styled.div`
   overflow: hidden;

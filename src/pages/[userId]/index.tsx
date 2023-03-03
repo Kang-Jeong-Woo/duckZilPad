@@ -10,11 +10,13 @@ import {userActions} from "@/store/slices/user-slice";
 import {canvasActions} from "@/store/slices/canvas-slice";
 import {getCookie, setCookie} from "@/lib/cookie";
 import {useAppDispatch} from "@/store/hooks";
+import { useRouter } from "next/navigation";
 import {ImgActions} from "@/store/slices/img-slice";
-import {MongoClient} from "mongodb";
 
 function HomePage() {
     const dispatch = useAppDispatch();
+    const router = useRouter();
+
     // 로그인 성공시 데이터 가져오기
     useEffect(() => {
         try {
@@ -31,9 +33,13 @@ function HomePage() {
                 })
                 .catch((error) => {
                     console.log(error);
+                    router.push("/")
                 });
         } catch (error) {
             console.log(error);
+            alert("Server error")
+            router.push("/")
+
         }
     }, []);
 
@@ -53,6 +59,9 @@ function HomePage() {
             })
             .catch((error) => {
                 console.log(error);
+                alert("Token signing failed.")
+                router.push("/")
+
             });
     }), 7200000)
 

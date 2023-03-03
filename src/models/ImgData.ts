@@ -1,6 +1,6 @@
 import { Model, model, models, Schema } from 'mongoose';
 
-interface postIts {
+interface imgData {
 
     userId: string,
     title: string,
@@ -16,9 +16,9 @@ interface postIts {
 
 }
 
-interface postItsModel extends Model<postIts> {}
+interface imgDataModel extends Model<imgData> {}
 
-const postItsSchema = new Schema({
+const imgDataSchema = new Schema({
 
     userId: {
         type: String,
@@ -60,6 +60,6 @@ const postItsSchema = new Schema({
 
 })
 
-const PostIts = models.PostIts || model<postIts, postItsModel>('PostIts', postItsSchema);
+const ImgData = models.imgData || model<imgData, imgDataModel>('imgData', imgDataSchema);
 
-export default PostIts
+export default ImgData
