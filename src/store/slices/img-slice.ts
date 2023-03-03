@@ -85,7 +85,7 @@ const ImgSlice = createSlice({
                 editAry.height=newData.h
             }  
         },
-        postItClear() {
+        ImgClear() {
             return initialState
         }
     }

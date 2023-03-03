@@ -1,12 +1,15 @@
 import classes from "./Container.module.css";
 import Link from "next/link";
-import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {useAppSelector} from "@/store/hooks";
+import {RootState} from "@/store/store";
+import React from "react";
 
-
-const Container = (props) => {
-    const userId = useSelector(state => state.user.userData.userId);
+const Container:React.FC<{
+    children:React.ReactNode
+}> = (props) => {
     const router = useRouter();
+    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
     function isLoggedIn () {
         if(userId) {
             router.push("/" + userId);

@@ -1,29 +1,30 @@
-import {useRef} from "react";
-import {useDispatch} from "react-redux";
+import React, {useRef} from "react";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
+import {RootState} from "@/store/store";
 import {fontActions} from "@/store/slices/font-slice";
 import classes from "./Form.module.css";
 
-const FontSection = (props) => {
-    const inputRef = useRef();
-    const styleRef = useRef();
-    const colorRef = useRef("#000000");
-    const dispatch = useDispatch();
-    const addFontSlice = (data) => {dispatch(fontActions.addFont(data))};
-    const addFont = (event) => {
+const FontAddForm:React.FC = () => {
+    const dispatch = useAppDispatch();
+    const inputRef = useRef<HTMLInputElement>(null);
+    const colorRef = useRef<HTMLInputElement>(null);
+    const styleRef = useRef<HTMLSelectElement>(null);
+    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
+    const addFont = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if(inputRef.current.value.trim().length !== 0 && styleRef.current.value !== "Choose the font."){
+        if(inputRef.current?.value.trim().length !==0 && styleRef.current?.value !== ""){
             const data = {
-                userId: props.userId,
-                content: inputRef.current.value,
-                style: styleRef.current.value,
-                color: colorRef.current.value
+                userId: userId!,
+                content: inputRef.current!.value,
+                style: styleRef.current!.value,
+                color: colorRef.current!.value
             }
-            addFontSlice(data);
+            dispatch(fontActions.addFont(data));
             return
         }
         alert("Please check the content and font style again.");
     }
-    return (
+    return(
         <>
             <h1 className={classes.header}>Font Upload</h1>
             <form className={classes.fontForm} onSubmit={addFont}>
@@ -57,10 +58,12 @@ const FontSection = (props) => {
 
                 <div className={classes.sendCntnr}>
                     <button className={classes.button}>Send</button>
-                </div >
+                </div>
             </form>
         </>
     )
-}
 
-export default FontSection
+
+
+}
+export default FontAddForm;

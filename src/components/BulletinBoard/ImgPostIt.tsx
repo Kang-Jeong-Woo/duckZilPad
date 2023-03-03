@@ -18,9 +18,6 @@ const ImgPostIt:React.FC<{
     positionX:number,
     positionY:number,
     positionZ:number,
-    onDragPst:()=>void,
-    onSizePst:()=>void,
-    onZpst:()=>void
 }> = props => {
     const dispatch = useAppDispatch();
     const tabRef = useRef<HTMLSpanElement>(null);

@@ -40,7 +40,7 @@ const tableSlice = createSlice({
                 userId: string,
                 style: {font: string},
                 color: {font: string, border: string, back: string},
-                contents: {titles: string[], contents: string[][]}
+                // contents: {titles: string[], contents: string[][]}
             }>
         ) {
             const tableDefaultData = {

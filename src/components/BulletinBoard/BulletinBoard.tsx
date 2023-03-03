@@ -7,9 +7,7 @@ import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
 
-const BulletinBoard: React.FC<{
-    onDragPst: () => void; onSizePst:()=>void; onZPst:()=>void; onSaveDraw: () => void;
-}> = (props) => {
+const BulletinBoard: React.FC<{}> = (props) => {
 
     const tablesData = useAppSelector((state: RootState) => state.table.tableData);
     const fontsData = useAppSelector((state: RootState) => state.font.fontData);
@@ -30,9 +28,6 @@ const BulletinBoard: React.FC<{
                         positionX={img.positionX}
                         positionY={img.positionY}
                         positionZ={img.positionZ}
-                        onDragPst={props.onDragPst}
-                        onSizePst={props.onSizePst}
-                        onZpst={props.onZPst}
                     />
                 ))}
                 {fontsData.map((font) => (
@@ -49,9 +44,6 @@ const BulletinBoard: React.FC<{
                         positionX={font.positionX}
                         positionY={font.positionY}
                         positionZ={font.positionZ}
-                        onDragPst={props.onDragPst}
-                        onSizePst={props.onSizePst}
-                        onZpst={props.onZPst}
                     />
                 ))}
                 {tablesData.map((table) => (
@@ -67,12 +59,9 @@ const BulletinBoard: React.FC<{
                         positionX={table.positionX}
                         positionY={table.positionY}
                         positionZ={table.positionZ}
-                        onDragPst={props.onDragPst}
-                        onSizePst={props.onSizePst}
-                        onZpst={props.onZPst}
                     />
                 ))}
-                <Canvas onSaveDraw={props.onSaveDraw}/>
+                <Canvas/>
             </BulletinBoardCntnr>
         </Body>
     )

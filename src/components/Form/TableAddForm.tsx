@@ -1,53 +1,62 @@
-import {useRef, useState} from "react";
-import {useDispatch} from "react-redux";
-import { tableActions } from "@/store/slices/table-slice";
-import classes from "./Form.module.css";
-import styled from "styled-components";
+import React, {useState} from "react";
+import {tableActions} from "@/store/slices/table-slice";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
+import {RootState} from "@/store/store";
+import classes from "@/components/Form/Form.module.css";
 
-const TableForm = (props) => {
-    const [font, setFont] = useState();
-    const [fontColor, setFontColor] = useState(undefined);
-    const [borderColor, setBorderColor] = useState(undefined);
-    const [bgColor, setBgColor] = useState(undefined);
+const TableAddForm:React.FC = () => {
+    const dispatch = useAppDispatch();
+    const [font, setFont] = useState<string>("");
+    const [bgColor, setBgColor] = useState<string>("");
+    const [fontColor, setFontColor] = useState<string>("");
+    const [borderColor, setBorderColor] = useState<string>("");
+    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
 
-    const dispatch = useDispatch();
-    const addTableSlice = (data) => {dispatch(tableActions.addTable(data))};
-    const setFontColorFn = (event) => {setFontColor(event.target.value)}
-    const setBorderColorFn = (event) => {setBorderColor(event.target.value)}
-    const setBgColorFn = (event) => {setBgColor(event.target.value)}
-    const setFontFn = (event) => {setFont(event.target.value)}
-    const addTable = (event) => {
+    const setFontFn = (event:React.ChangeEvent<HTMLSelectElement>) => {
+        {setFont(event.target.value)}
+    }
+    const setBgColorFn = (event:React.ChangeEvent<HTMLInputElement>) => {
+        {setBgColor(event.target.value)}
+    }
+    const setFontColorFn = (event:React.ChangeEvent<HTMLInputElement>) => {
+        {setFontColor(event.target.value)}
+    }
+    const setBorderColorFn = (event:React.ChangeEvent<HTMLInputElement>) => {
+        {setBorderColor(event.target.value)}
+    }
+    const addTable = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if(font !== "Choose the font you want."){
             const data = {
-                userId: props.userId,
+                userId: userId!,
                 style: {font: font},
                 color: {
-                        font: fontColor,
-                        border: borderColor,
-                        back: bgColor
-                        }
+                    font: fontColor,
+                    border: borderColor,
+                    back: bgColor
+                }
             }
-            addTableSlice(data);
+            dispatch(tableActions.addTable(data));
             return
         }
         alert("Please check the content and font style again.");
     }
-    return (
+
+    return(
         <>
             <div className={classes.tableHeader}>
                 <h1 className={classes.header}>Table Upload</h1>
                 <div style={{display:"flex"}}>
-                <div className={classes.tableExample}>
-                example :
-                </div>
-                <table bgcolor={bgColor} style={{border:`${borderColor} 1px solid`, color:fontColor, fontFamily:font }}>
-                    <tbody>
-                    <tr>
-                        <td>example</td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <div className={classes.tableExample}>
+                        example :
+                    </div>
+                    <table bgcolor={bgColor} style={{border:`${borderColor} 1px solid`, color:fontColor, fontFamily:font }}>
+                        <tbody>
+                        <tr>
+                            <td>example</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <form className={classes.tableForm} onSubmit={addTable}>
@@ -93,5 +102,4 @@ const TableForm = (props) => {
         </>
     )
 }
-
-export default TableForm
+export default TableAddForm;

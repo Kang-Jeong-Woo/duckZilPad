@@ -58,7 +58,6 @@ const PostItForm = (props) => {
         //폼데이터 생성
         const formData = new FormData()
         formData.set('image', uploadedImage, fileName)
-
         try {
             axios.post("http://localhost:8123/api/saveImg",
                 formData,

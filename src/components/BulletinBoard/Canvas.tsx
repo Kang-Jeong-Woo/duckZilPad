@@ -11,16 +11,15 @@ import {
     faPalette,
     faPen
 } from "@fortawesome/free-solid-svg-icons";
-import CanvasDraw from "react-canvas-draw";
+import CanvasDraw, {CanvasDrawProps} from "react-canvas-draw";
 import styled, {keyframes} from "styled-components";
 
 const Canvas: React.FC<{
-    onSaveDraw: () => void
-}> = props => {
+}> = () => {
     const dispatch = useAppDispatch();
+    const canvasRef = useRef<CanvasDraw>(null);
     const penRef = useRef<HTMLDivElement>(null);
     const saveRef = useRef<HTMLDivElement>(null);
-    // let canvasRef = useRef<HTMLCanvasElement>(null);
     const [canvasWidth, setCanvasWidth] = useState(1920);
     const [canvasHeight, setCanvasHeight] = useState(937);
     const canvasData = useAppSelector((state:RootState) => state.canvas);
@@ -28,13 +27,13 @@ const Canvas: React.FC<{
     const fontData = useAppSelector((state:RootState)=>state.font.fontData);
     const tableData = useAppSelector((state:RootState)=>state.table.tableData);
     const userId = useAppSelector((state:RootState)=>state.user.userData.userId);
-    let canvasRef:any
+    // let canvasRef:any
     const setHeight = () => Math.ceil(window.innerHeight - 70);
     const setWidth = () => Math.ceil(window.innerWidth);
     const eraseAll = () => {
-        canvasRef.current.eraseAll()};
+        canvasRef.current!.clear()};
     const undo = () => {
-        canvasRef.current.undo()};
+        canvasRef.current!.undo()};
     const changeColor = (event:React.ChangeEvent<HTMLInputElement>) => {
         dispatch(canvasActions.setColor(event.target.value));
     };
@@ -45,7 +44,7 @@ const Canvas: React.FC<{
         dispatch(canvasActions.setIsDraw());
     };
     const onSaveDB = () => {
-        const drawData = {userId:userId, drawData:canvasRef.current.getSaveData()}
+        const drawData = {userId:userId, drawData:canvasRef.current!.getSaveData()}
         try {
             console.log(imgData, tableData, fontData, drawData);
         } catch (error) {
@@ -53,11 +52,11 @@ const Canvas: React.FC<{
         }
     };
     const menuMouseEnter = () => {
-        penRef.current!.style.top = "60px"
+        penRef.current!.style.left = "60px"
         penRef.current!.style.opacity = "1"
     };
     const menuMouseLeave = () => {
-        penRef.current!.style.top = "-200px"
+        penRef.current!.style.left = "-200px"
         penRef.current!.style.opacity = "0"
     };
     const saveMouseEnter = () => {
@@ -70,12 +69,12 @@ const Canvas: React.FC<{
     };
     useEffect(()=>{
         setCanvasWidth(setWidth());
-        setCanvasWidth(setHeight());
+        setCanvasHeight(setHeight());
     },[]);
     // @ts-ignore
     return(
         <>
-            <div >
+            <div>
                 <IconWrapper onMouseEnter={menuMouseEnter} onMouseLeave={menuMouseLeave}>
                     <FontAwesomeIcon icon={faPaintbrush}/>
                     <PenMenuWrapper ref={penRef}>
@@ -116,7 +115,7 @@ const Canvas: React.FC<{
 
             </div>
             <CanvasDraw
-                ref={(ref)=>{canvasRef=ref}}
+                ref={canvasRef}
                 saveData={canvasData.drawData.drawData}
                 canvasWidth={canvasWidth}
                 canvasHeight={canvasHeight}
@@ -186,7 +185,7 @@ const IconWrapper = styled.div`
   box-shadow: 4px 4px black;
   z-index: 10000;
   transition: 0.6s;
-  &input{
+  & input{
     cursor: pointer;
   }
   &:hover{
@@ -200,9 +199,9 @@ const PenMenuWrapper = styled.div`
   left: -200px;
   transition: 0.5s;
   width: 200px;
-  &div{
+  animation: ${hovering} 3s linear infinite both;
+  & div{
     padding: 0.25em 0;
-    animation: ${hovering} 3s linear infinite both;
   }
 `;
 const ToggleBtn = styled.span`
@@ -229,11 +228,10 @@ const ToggleBtn = styled.span`
 `;
 const ToggleSwitch = styled.label`
   position: absolute;
-  top: 5px;
   display: inline-block;
   width: 50px;
   height: 18px;
-  &input{
+  & input{
     &:checked + ${ToggleBtn}{
       background-color: #EBE51E;
     }
@@ -284,6 +282,7 @@ const SaveIcon = styled.div`
   font-family: fantasy;
   position: absolute;
   left: -200px;
+  opacity: 0;
   transition: 0.5s;
   width: 70px;
   border-radius: 8px;
@@ -292,6 +291,7 @@ const SaveIcon = styled.div`
   box-shadow: 2px 2px black;
   color: black;
   cursor: pointer;
+  animation: ${hovering} 3s linear infinite both;
   &:after{
     content: '';
     position: absolute;
