@@ -6,15 +6,14 @@ import { setSignUpMode } from "@/store/slices/modeSlice";
 import DoddleBtn from "@/components/UI/DoddleBtn";
 import Logo from "@/components/UI/Logo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Cookies } from "react-cookie";
 import { RootState } from "@/store/store";
+import { setCookie } from "@/lib/cookie";
+
 
 export default function Login() {
 
     const router = useRouter();
     const dispatch = useAppDispatch();
-
-    const cookies = new Cookies();//쿠키 사용을 위해 선언
 
     // 로그인 데이터
     const loginData = useAppSelector((state: RootState)=> state.login.loginData);
@@ -26,12 +25,26 @@ export default function Login() {
             dispatch(setLoginMessage("Please enter user-id or password."))
         } else {
             axios.post(
-                "http://localhost:8123/api/login",
-                { userId: loginData.userId, password: loginData.password },
-                { withCredentials: true }
+                "/api/login",
+                { userId: loginData.userId, password: loginData.password }
             ).then((result) => {
                 if (result.status === 200) {
                     console.log(result.data)
+                    const accessToken = result.data.accessToken;
+                    const refreshToken = result.data.refreshToken;
+                    setCookie("accessToken", accessToken, {
+                        path: "/",
+                        secure: false,
+                        sameSite: 'strict',
+                        HttpOnly: true
+                    })
+                    setCookie("refreshToken", refreshToken, {
+                        path: "/",
+                        secure: false,
+                        sameSite: 'strict',
+                        HttpOnly: true
+                    })
+                    // console.log(cookies.accessToken)
                     router.push("/" + loginData.userId)
                 }
               })
@@ -51,10 +64,7 @@ export default function Login() {
                     <Input
                         defaultValue={ loginData.userId } 
                         placeholder="Login Id" 
-                        onChange={ (e)=>{
-                            console.log(loginData.userId)
-                            dispatch(setLoginData({ type:"userId", value: e.target.value }))
-                        } } 
+                        onChange={ (e)=>{dispatch(setLoginData({ type:"userId", value: e.target.value }))} } 
                     />
                 </Wrapper>
                 <Wrapper>
