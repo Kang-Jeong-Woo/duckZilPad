@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { RootState } from "@/store/store";
 import { 
     setSignUpData,
@@ -9,10 +9,10 @@ import {
     nickCheck } from "@/store/slices/signUpSlice";
 import { setLoginMode } from "@/store/slices/modeSlice";
 import DoddleBtn from "@/components/UI/DoddleBtn";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Logo from "@/components/UI/Logo";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
 
-export default function signUp () {
+const SignUp:React.FC = () => {
 
     const dispatch = useAppDispatch();
 
@@ -143,7 +143,7 @@ export default function signUp () {
         </Body>
     ) 
 }
-
+export default SignUp;
 // styled components
 const Body = styled.div`
     width: 100%;
