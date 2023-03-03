@@ -1,15 +1,14 @@
 import classes from "./SideBar.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImage, faTable, faFont, faUser} from "@fortawesome/free-solid-svg-icons";
-import {useDispatch, useSelector} from "react-redux";
 import {tableActions} from "@/store/slices/table-slice";
 import {fontActions} from "@/store/slices/font-slice";
-import {postItActions} from "@/store/slices/postIt-slice";
+import {imgActions} from "@/store/slices/img-slice";
 import {canvasActions} from "@/store/slices/canvas-slice";
 import {addMenuActions} from "@/store/slices/addMenu-slice";
 import {userActions} from "@/store/slices/user-slice"
 import Modal from "@/components/UI/Modal";
-import PostItForm from "@/components/Form/PostItForm";
+import ImgForm from "@/components/Form/ImgForm";
 import TableForm from "@/components/Form/TableForm";
 import FontSection from "@/components/Form/FontPoistItForm";
 import {useEffect, useRef, useState} from "react";
@@ -18,22 +17,25 @@ import axios from "axios";
 import {useRouter} from "next/router";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Modal2 from "@/components/UI/Modal2";
-import { removeCookie } from "@/util/cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCookie } from "@/lib/cookie";
 // import {router} from "next/client";
 
 
 const SideBar = (props) => {
+
     const router = useRouter();
     const dispatch = useDispatch();
     const userRef = useRef();
     const addMenu = useSelector(state => state.addMenu);
+    const user = useSelector(state => state.user);
     const [showModal, setShowModal] = useState(false);
 
     const setFont = () => {
         dispatch(addMenuActions.setFont())
     }
-    const setPost = () => {
-        dispatch(addMenuActions.setPost())
+    const setImg = () => {
+        dispatch(addMenuActions.setImg())
         // setShowModal(true);
     }
     const setTable = () => {
@@ -57,7 +59,7 @@ const SideBar = (props) => {
         removeCookie("accessToken");
         dispatch(tableActions.tableClear());
         dispatch(fontActions.fontClear());
-        dispatch(postItActions.postItClear());
+        dispatch(imgActions.imgClear());
         dispatch(canvasActions.canvasClear());
         dispatch(userActions.userClear());
         router.push("/");
@@ -76,17 +78,17 @@ const SideBar = (props) => {
                             fontWeight: "bold",
                             letterSpacing: "2px",
                             marginBottom: "-5px"
-                        }}>{props.user.nick}</div>
+                        }}>{user.userData.nick}</div>
                         <div className={classes.btnCntnr}>
                             <Button onClick={logout}>LogOut</Button>
                         </div>
                     </div>
                 </li>
 
-                <li onClick={setPost}>
+                <li onClick={setImg}>
                     <FontAwesomeIcon icon={faImage}/>
-                    {addMenu.modal && addMenu.post &&
-                        <Modal onClose={close}><PostItForm userId={props.user.userId}/></Modal>}
+                    {addMenu.modal && addMenu.img &&
+                        <Modal onClose={close}><ImgForm /></Modal>}
                 </li>
                 {/*<CSSTransition in={showModal} timeout={500} mountOnEnter unmountOnExit classNames={"myclass"}>*/}
                 {/*    <Modal onClose={close}><PostItForm userId={props.user.userId}/></Modal>*/}
@@ -95,13 +97,13 @@ const SideBar = (props) => {
                 <li onClick={setTable}>
                     <FontAwesomeIcon icon={faTable}/>
                     {addMenu.modal && addMenu.table &&
-                        <Modal onClose={close}><TableForm userId={props.user.userId}/></Modal>}
+                        <Modal onClose={close}><TableForm /></Modal>}
                 </li>
 
                 <li onClick={setFont}>
                     <FontAwesomeIcon icon={faFont}/>
                     {addMenu.modal && addMenu.font &&
-                        <Modal onClose={close}><FontSection userId={props.user.userId}/></Modal>}
+                        <Modal onClose={close}><FontSection /></Modal>}
                 </li>
 
             </ul>

@@ -18,7 +18,7 @@ export interface fontDataState {
     height: number,
     positionX: number,
     positionY: number,
-    positionZ: number
+    positionZ: number,
 }
 
 const initialState: fontState = {isInit:true, fontData:[]};

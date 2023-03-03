@@ -1,20 +1,21 @@
 import {useMemo, useRef, useState} from "react";
-import {postItActions} from "@/store/slices/postIt-slice";
+import {imgActions} from "@/store/slices/img-slice";
 import {addMenuActions} from "@/store/slices/addMenu-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ShowFileImage from "@/components/Form/ShowFileImage";
 import classes from "./Form.module.css";
 import axios from "axios";
 import path from "path";
 
-const PostItForm = (props) => {
+const ImgForm = (props) => {
+
     const dispatch = useDispatch();
     const [imageFile, setImageFile] = useState(null);
     const fileInputRef = useRef(null);
     const descriptionInputRef = useRef();
 
-    const userId = props.userId
-    const addPostIt= (data)=>{dispatch(postItActions.addPostIt(data))};
+    const userId = useSelector(state => state.user.userData.userId)
+    const addImg= (data)=>{dispatch(imgActions.addImg(data))};
     const close = () => {dispatch(addMenuActions.close())};
 
     const handleClickFileInput = () => {
@@ -54,15 +55,14 @@ const PostItForm = (props) => {
         const fileName = userId + "-" + Date.now() + ext
         //파일 경로
         const imgPath =  "/" + userId + "/" + fileName
-        addPostIt({userId: userId, title: enteredTitle, content: imgPath})
+        addImg({userId: userId, title: enteredTitle, content: imgPath})
         //폼데이터 생성
         const formData = new FormData()
         formData.set('image', uploadedImage, fileName)
 
         try {
-            axios.post("http://localhost:8123/api/saveImg",
-                formData,
-                { withCredentials: true }
+            axios.post("/api/upload/img",
+                formData
             )
             .then((result) => {
                 console.log(result)
@@ -109,4 +109,4 @@ const PostItForm = (props) => {
     )
 }
 
-export default PostItForm;
+export default ImgForm;

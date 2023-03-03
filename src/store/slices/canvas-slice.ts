@@ -6,7 +6,12 @@ export interface canvasState {
     drawingOn: boolean,
     color: string,
     radius: number,
-    drawData: {userId:string, drawData?:string},
+    drawData: drawData,
+}
+
+export interface drawData {
+    userId: string,
+    drawData?:string
 }
 
 const initialState: canvasState = {

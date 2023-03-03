@@ -4,14 +4,14 @@ import {createSlice} from "@reduxjs/toolkit";
 export interface addMenuState {
     modal: boolean,
     font: boolean,
-    post: boolean,
+    img: boolean,
     table: boolean
 }
 
 const initialState: addMenuState = {
     modal: false,
     font: false,
-    post: false,
+    img: false,
     table: false
 };
 
@@ -22,12 +22,12 @@ const addMenuSlice = createSlice({
         setFont(state) {
             state.modal = true
             state.font = true
-            state.post = false
+            state.img = false
             state.table = false
         },
-        setPost(state) {
+        setImg(state) {
             state.modal = true
-            state.post = true
+            state.img = true
             state.font = false
             state.table = false
         },
@@ -35,11 +35,11 @@ const addMenuSlice = createSlice({
             state.modal = true
             state.table = true
             state.font = false
-            state.post = false
+            state.img = false
         },
         close(state) {
             state.modal = false
-            state.post = false
+            state.img = false
             state.font = false
             state.table = false
         },

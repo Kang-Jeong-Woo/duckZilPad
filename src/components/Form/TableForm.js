@@ -1,5 +1,5 @@
 import {useRef, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { tableActions } from "@/store/slices/table-slice";
 import classes from "./Form.module.css";
 import styled from "styled-components";
@@ -9,18 +9,19 @@ const TableForm = (props) => {
     const [fontColor, setFontColor] = useState(undefined);
     const [borderColor, setBorderColor] = useState(undefined);
     const [bgColor, setBgColor] = useState(undefined);
-
     const dispatch = useDispatch();
     const addTableSlice = (data) => {dispatch(tableActions.addTable(data))};
     const setFontColorFn = (event) => {setFontColor(event.target.value)}
     const setBorderColorFn = (event) => {setBorderColor(event.target.value)}
     const setBgColorFn = (event) => {setBgColor(event.target.value)}
     const setFontFn = (event) => {setFont(event.target.value)}
+    const userId = useSelector(state => state.user.userData.userId)
+
     const addTable = (event) => {
         event.preventDefault();
         if(font !== "Choose the font you want."){
             const data = {
-                userId: props.userId,
+                userId: userId,
                 style: {font: font},
                 color: {
                         font: fontColor,

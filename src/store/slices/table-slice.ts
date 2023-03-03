@@ -17,7 +17,7 @@ export interface tableDataState {
     height: number,
     positionX: number,
     positionY: number,
-    positionZ: number
+    positionZ: number,
 }
 
 const initialState: tableState = {isInit: true, tableData: []}

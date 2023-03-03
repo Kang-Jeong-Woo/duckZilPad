@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {useAppDispatch} from "@/store/hooks";
-import {ImgActions} from "@/store/slices/img-slice";
+import {imgActions} from "@/store/slices/img-slice";
 import {DraggableData, Rnd, RndDragCallback, RndResizeCallback} from "react-rnd";
 import {DraggableEvent} from "react-draggable";
 import {tableActions} from "@/store/slices/table-slice";
@@ -25,9 +25,6 @@ const TablePostIt: React.FC<{
     positionX: number,
     positionY: number,
     positionZ: number,
-    onDragPst: () => void,
-    onSizePst: () => void,
-    onZpst: () => void
 }> = props => {
     const dispatch = useAppDispatch();
     const tabRef = useRef<HTMLSpanElement>(null);
@@ -49,11 +46,11 @@ const TablePostIt: React.FC<{
     const dragStart:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const setIndex = setZIndex(+d.node.style.zIndex, +d.node.style.zIndex + 1);
         const Z = {id: id, z: setIndex, colName: "postItsData"};
-        dispatch(ImgActions.updateZIndex(Z));
+        dispatch(imgActions.updateZIndex(Z));
     }
     const dragStop:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
-        dispatch(ImgActions.updateXYPosition(XY));
+        dispatch(imgActions.updateXYPosition(XY));
     }
     const resizeStart:RndResizeCallback = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -66,7 +63,7 @@ const TablePostIt: React.FC<{
         const width = props.width + delta.width
         const height = props.height + delta.height
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
-        dispatch(ImgActions.updateWHPosition(XYHW));
+        dispatch(imgActions.updateWHPosition(XYHW));
     }
 
     const editComponent = (<>
