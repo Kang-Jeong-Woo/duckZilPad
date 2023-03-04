@@ -32,8 +32,8 @@ const Canvas: React.FC<{
     const fontData = useAppSelector((state:RootState)=>state.font.fontData);
     const tableData = useAppSelector((state:RootState)=>state.table.tableData);
     const userId = useAppSelector((state:RootState)=>state.user.userData.userId);
-    const setHeight = () => Math.ceil(window.innerHeight - 70);
     const setWidth = () => Math.ceil(window.innerWidth);
+    const setHeight = () => (Math.ceil(window.innerHeight- 70) < 960) ? 960 : Math.ceil(window.innerHeight-70);
     const eraseAll = () => {
         canvasRef.current!.clear()};
     const undo = () => {
@@ -198,7 +198,7 @@ const IconWrapper = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 3rem;
-  position: absolute;
+  position: fixed;
   top: 73px;
   left: 15px;
   display: flex;
@@ -280,7 +280,7 @@ const SaveWrapper = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 3rem;
-  position: absolute;
+  position: fixed;
   top: 118px;
   left: 15px;
   display: flex;

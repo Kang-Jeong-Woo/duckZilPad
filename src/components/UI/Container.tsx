@@ -3,20 +3,20 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {useAppSelector} from "@/store/hooks";
 import {RootState} from "@/store/store";
-import React from "react";
+import React, {useEffect} from "react";
 
 const Container:React.FC<{
     children:React.ReactNode
 }> = (props) => {
     const router = useRouter();
-    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
     function isLoggedIn () {
-        if(userId) {
-            router.push("/" + userId);
+        if(localStorage.getItem("userId")) {
+            router.push("/" + localStorage.getItem("userId"));
         } else {
             router.push("/log-in")
         }
     }
+
     return(
         <div className={classes.Cntnr}>
             <div className={`${classes.Nav} ${classes.border} ${classes.align}`}>

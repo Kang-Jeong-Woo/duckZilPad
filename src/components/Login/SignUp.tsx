@@ -155,14 +155,14 @@ const Body = styled.div`
     padding: 4rem 0;
 `
 const Container = styled.div`
-    background: snow;
-    width: 320px;
-    padding: 20px;
-    padding-top: 10px;
-    margin: auto;
-    display: block;
-    border: 1px gray solid;
-    border-radius: 20px;
+  //background: snow;
+  width: 20rem;
+  //padding: 20px;
+  //padding-top: 10px;
+  margin: auto;
+  display: block;
+  //border: 1px gray solid;
+  //border-radius: 20px;
 `
 
 const Title = styled.h2`
@@ -184,7 +184,7 @@ const Input = styled.input`
     display: inline-block;
     border: 0px;
     border-bottom: 1px solid gray;
-    width: ${props => props.placeholder === "User.ts-Id" && '140px' };
+    width: ${props => props.placeholder === "User-Id" && '140px' };
 `
 
 const CheckBtn = styled.span`

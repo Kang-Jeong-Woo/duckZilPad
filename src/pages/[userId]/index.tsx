@@ -33,6 +33,7 @@ function HomePage() {
                 })
                 .catch((error) => {
                     console.log(error);
+                    alert("로그인중에 문제가 생겼습니다.");
                     router.push("/")
                 });
         } catch (error) {

@@ -39,7 +39,7 @@ const canvasSlice = createSlice({
         setDrawData(state, action) {
             if (state.isInit) {
                 state.drawData.userId = action.payload.userId;
-                state.drawData.drawData = action.payload.drawData;
+                state.drawData.drawData = action.payload[0].saveImage;
                 state.isInit = false;
             }
             return

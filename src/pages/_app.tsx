@@ -1,15 +1,48 @@
 import '@/styles/globals.css'
 import {Provider} from "react-redux";
-import store from "@/store/store";
+import store, {RootState} from "@/store/store";
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { CookiesProvider } from 'react-cookie';
 import {BindingSpring} from "../components/UI/BindingSpring";
 import {AppProps} from "next/app";
+import {useEffect, useState} from "react";
+import Loading from "@/components/UI/Loading";
+import {Router} from "next/router";
+import {router} from "next/client";
+import {useAppSelector} from "@/store/hooks";
 config.autoAddCss = false
 
 export default function App({ Component, pageProps }:AppProps) {
-    return(
+    const [loading, setLoading] = useState<boolean>(false);
+    useEffect(() => {
+        // const showRoute = ['/log-in',`/`]
+        // const Start = (url:string) => {
+        //     if(showRoute.find(route=>String(url).includes(route))){
+        //         setLoading(true);
+        //     }
+        // }
+        // const End = (url:string) => {
+        //     if(showRoute.find(route => String(url).includes(route))){
+        //         setLoading(false);
+        //     }
+        // }
+        const Start = () => {setLoading(true)}
+        const End = () => {setLoading(false)}
+        Router.events.on("routeChangeStart", Start);
+        Router.events.on("routeChangeComplete", End);
+        Router.events.on("routeChangeError", End);
+        return()=>{
+            Router.events.off("routeChangeStart", Start);
+            Router.events.off("routeChangeComplete", End);
+            Router.events.off("routeChangeError", End);
+        }
+    }, []);
+
+
+    return loading ? (
+        <Loading/>
+        ) : (
         <>
             <CookiesProvider>
                 <Provider store={store}>
