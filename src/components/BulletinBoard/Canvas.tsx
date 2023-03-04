@@ -18,6 +18,7 @@ import { getCookie } from "@/lib/cookie";
 import { tableActions } from "@/store/slices/table-slice";
 import { fontActions } from "@/store/slices/font-slice";
 import {ImgActions} from "@/store/slices/img-slice";
+import {router} from "next/client";
 
 const Canvas: React.FC<{
 }> = () => {
@@ -32,8 +33,8 @@ const Canvas: React.FC<{
     const fontData = useAppSelector((state:RootState)=>state.font.fontData);
     const tableData = useAppSelector((state:RootState)=>state.table.tableData);
     const userId = useAppSelector((state:RootState)=>state.user.userData.userId);
-    const setHeight = () => Math.ceil(window.innerHeight - 70);
-    const setWidth = () => Math.ceil(window.innerWidth);
+    const setHeight = () => (Math.ceil(window.innerHeight - 70))<960?960:Math.ceil(window.innerHeight - 70);
+    const setWidth = () => (Math.ceil(window.innerWidth)<1900)?1900:Math.ceil(window.innerWidth);
     const eraseAll = () => {
         canvasRef.current!.clear()};
     const undo = () => {
@@ -57,22 +58,6 @@ const Canvas: React.FC<{
             .then((result) => {
               if (result.status === 200) {
                   console.log(result.data)
-                  dispatch(tableActions.tableClear());
-                  dispatch(fontActions.fontClear());
-                  dispatch(ImgActions.ImgClear());
-                  dispatch(canvasActions.canvasClear());
-                  axios.post(
-                    "/api/savedata/success",
-                    { accessToken: getCookie("accessToken") })
-                  .then((result)=>{
-                    dispatch(tableActions.setTable(result.data.tableData));
-                    dispatch(fontActions.setFont(result.data.fontData));
-                    dispatch(ImgActions.setImg(result.data.imgData));
-                    dispatch(canvasActions.setDrawData(result.data.drawData));
-                  })
-                  .catch((error)=>{
-                    console.log(error)
-                  })
               }
             })
         } catch (error) {
@@ -198,7 +183,7 @@ const IconWrapper = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 3rem;
-  position: absolute;
+  position: fixed;
   top: 73px;
   left: 15px;
   display: flex;
@@ -280,7 +265,7 @@ const SaveWrapper = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 3rem;
-  position: absolute;
+  position: fixed;
   top: 118px;
   left: 15px;
   display: flex;

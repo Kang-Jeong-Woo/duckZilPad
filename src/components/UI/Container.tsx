@@ -9,10 +9,9 @@ const Container:React.FC<{
     children:React.ReactNode
 }> = (props) => {
     const router = useRouter();
-    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
-    function isLoggedIn () {
-        if(userId) {
-            router.push("/" + userId);
+    const isLoggedIn = () => {
+        if(localStorage.getItem("userId")){
+            router.push("/"+localStorage.getItem("userId"));
         } else {
             router.push("/log-in")
         }

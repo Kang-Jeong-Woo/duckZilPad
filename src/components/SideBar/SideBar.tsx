@@ -38,11 +38,7 @@ const SideBar:React.FC<{}> = () => {
     }
     const logOut = () => {
         removeCookie("accessToken");
-        dispatch(tableActions.tableClear());
-        dispatch(fontActions.fontClear());
-        dispatch(ImgActions.ImgClear());
-        dispatch(canvasActions.canvasClear());
-        dispatch(userActions.userClear());
+        localStorage.removeItem("userId");
         router.push("/");
     }
     return(
@@ -112,7 +108,7 @@ const hovering = keyframes`
   }
 `;
 const SideBarWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 15px;
   left: 5px;
   z-index: 10000;

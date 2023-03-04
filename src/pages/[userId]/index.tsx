@@ -28,7 +28,7 @@ function HomePage() {
                         dispatch(tableActions.setTable(result.data.tableData));
                         dispatch(fontActions.setFont(result.data.fontData));
                         dispatch(ImgActions.setImg(result.data.imgData));
-                        dispatch(canvasActions.setDrawData(result.data.drawData));
+                        dispatch(canvasActions.setDrawData(result.data.drawData[0]));
                     }
                 })
                 .catch((error) => {
