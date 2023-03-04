@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import {Provider} from "react-redux";
-import store from "@/store/store";
+import store, {RootState} from "@/store/store";
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { CookiesProvider } from 'react-cookie';
@@ -14,6 +14,17 @@ config.autoAddCss = false
 export default function App({ Component, pageProps }:AppProps) {
     const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
+        // const showRoute = ['/log-in',`/`]
+        // const Start = (url:string) => {
+        //     if(showRoute.find(route=>String(url).includes(route))){
+        //         setLoading(true);
+        //     }
+        // }
+        // const End = (url:string) => {
+        //     if(showRoute.find(route => String(url).includes(route))){
+        //         setLoading(false);
+        //     }
+        // }
         const Start = () => {setLoading(true)}
         const End = () => {setLoading(false)}
         Router.events.on("routeChangeStart", Start);

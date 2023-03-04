@@ -1,8 +1,6 @@
 import classes from "./Container.module.css";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useAppSelector} from "@/store/hooks";
-import {RootState} from "@/store/store";
 import React from "react";
 
 const Container:React.FC<{
@@ -16,6 +14,7 @@ const Container:React.FC<{
             router.push("/log-in")
         }
     }
+
     return(
         <div className={classes.Cntnr}>
             <div className={`${classes.Nav} ${classes.border} ${classes.align}`}>
