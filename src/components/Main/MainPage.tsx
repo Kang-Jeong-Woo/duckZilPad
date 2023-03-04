@@ -49,7 +49,7 @@ const DescWrapper = styled.div`
 `;
 const ContentCntnr = styled.div`
   display: flex;
-  &span{
+  & span{
     display: flex;
     align-items: center;
     justify-content: center;

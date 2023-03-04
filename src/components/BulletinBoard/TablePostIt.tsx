@@ -46,11 +46,11 @@ const TablePostIt: React.FC<{
     const dragStart:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const setIndex = setZIndex(+d.node.style.zIndex, +d.node.style.zIndex + 1);
         const Z = {id: id, z: setIndex, colName: "postItsData"};
-        dispatch(ImgActions.updateZIndex(Z));
+        dispatch(tableActions.updateZIndex(Z));
     }
     const dragStop:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
-        dispatch(ImgActions.updateXYPosition(XY));
+        dispatch(tableActions.updateXYPosition(XY));
     }
     const resizeStart:RndResizeCallback = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -63,7 +63,7 @@ const TablePostIt: React.FC<{
         const width = props.width + delta.width
         const height = props.height + delta.height
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
-        dispatch(ImgActions.updateWHPosition(XYHW));
+        dispatch(tableActions.updateWHPosition(XYHW));
     }
 
     const editComponent = (<>

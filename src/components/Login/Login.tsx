@@ -76,7 +76,7 @@ export default function Login() {
                     <LoginMessage>&nbsp;{ loginMessage }</LoginMessage>
                 </Wrapper>
                 <Wrapper>
-                    <ModeMessage>Don`&apos`t have an account?</ModeMessage>
+                    <ModeMessage>Don&apos;t have an account?</ModeMessage>
                     <ModeBtn onClick={()=>{dispatch(setSignUpMode())}}>Sign-up</ModeBtn>
                     <DoddleBtn onClick={login}>Log-in</DoddleBtn>
                 </Wrapper>
