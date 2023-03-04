@@ -25,8 +25,8 @@ const Canvas: React.FC<{
     const canvasRef = useRef<CanvasDraw>(null);
     const penRef = useRef<HTMLDivElement>(null);
     const saveRef = useRef<HTMLDivElement>(null);
-    const [canvasWidth, setCanvasWidth] = useState(1920);
-    const [canvasHeight, setCanvasHeight] = useState(937);
+    const [canvasWidth, setCanvasWidth] = useState(3000);
+    const [canvasHeight, setCanvasHeight] = useState(1500);
     const canvasData = useAppSelector((state:RootState) => state.canvas);
     const imgData = useAppSelector((state:RootState)=>state.img.imgData);
     const fontData = useAppSelector((state:RootState)=>state.font.fontData);
@@ -141,7 +141,6 @@ const Canvas: React.FC<{
                     <SaveIcon ref={saveRef}>Save</SaveIcon>
                 </SaveWrapper>
             </div>
-
             <CanvasDraw
                 ref={canvasRef}
                 saveData={canvasData.drawData.drawData}
@@ -156,7 +155,6 @@ const Canvas: React.FC<{
                 catenaryColor={"#0a0302"}
                 immediateLoading={true}
             />
-
         </>
     )
 }

@@ -14,7 +14,7 @@ const MainPage:React.FC = () => {
                     <VideoCntnr>
                         <Image src={canvasEx} alt={"캔버스 그리기 기능"} width={300} height={300}/>
                     </VideoCntnr>
-                    <span>U can easily on/off pen feature<br/>also u can adjust pen size<br/>And choose the color u want!</span>
+                    <span>U can easily on/off pen feature, also u can adjust pen size<br/>And choose the color u want!</span>
                 </ContentCntnr>
 
                 <Title>2. Add this and that!</Title>

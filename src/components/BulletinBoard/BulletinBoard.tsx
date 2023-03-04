@@ -60,7 +60,7 @@ const BulletinBoard: React.FC<{}> = (props) => {
                         positionZ={table.positionZ}
                     />
                 ))}
-                <Canvas />
+                <Canvas/>
             </BulletinBoardCntnr>
         </Body>
     )
@@ -68,10 +68,11 @@ const BulletinBoard: React.FC<{}> = (props) => {
 
 export default BulletinBoard;
 const Body = styled.div`
-  overflow: hidden;
+  background-color: #F2F2F2;
 `;
 const BulletinBoardCntnr = styled.div`
   width: 100%;
   height: 100%;
+  background-color: #F2F2F2;
   overflow: hidden;
 `;

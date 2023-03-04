@@ -68,7 +68,6 @@ const ImgAddForm:React.FC = () => {
         }
         dispatch(addMenuActions.close());
     };
-
     return(
         <>
             <h1 className={classes.header}>Img Upload</h1>

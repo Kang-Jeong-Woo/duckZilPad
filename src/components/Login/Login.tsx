@@ -96,14 +96,14 @@ const Body = styled.div`
     padding: 4rem 0;
 `
 const Container = styled.div`
-    background: snow;
-    width: 320px;
-    padding: 20px;
-    padding-top: 10px;
+    //background: snow;
+    width: 20rem;
+    //padding: 20px;
+    //padding-top: 10px;
     margin: auto;
     display: block;
-    border: 1px gray solid;
-    border-radius: 20px;
+    //border: 1px gray solid;
+    //border-radius: 20px;
 `
 
 const Title = styled.h2`
