@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 
 const Error = () => {
+    const router = useRouter()
     const goHomePage = () => {
         router.push("/");
     }
