@@ -18,6 +18,7 @@ const ImgPostIt:React.FC<{
     positionX:number,
     positionY:number,
     positionZ:number,
+    tempUrl?:string
 }> = props => {
     const dispatch = useAppDispatch();
     const tabRef = useRef<HTMLSpanElement>(null);
@@ -75,7 +76,7 @@ const ImgPostIt:React.FC<{
                     <span onClick={pinEvent}><FontAwesomeIcon style={{color:draggable?"green":"#D6D01F", marginRight:"0.2em"}} icon={faThumbtack}/></span>
                 </WindowTab>
                 <Content>
-                    <Image src={props.content} alt={props.title} width={isFirstLoad ? props.width : +picWidth!}
+                    <Image src={props.tempUrl ? props.tempUrl : props.content} alt={props.title} width={isFirstLoad ? props.width : +picWidth!}
                            height={isFirstLoad ? props.height : +picHeight! - 23}/>
                 </Content>
             </PostIt>

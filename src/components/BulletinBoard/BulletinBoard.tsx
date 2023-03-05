@@ -27,6 +27,7 @@ const BulletinBoard: React.FC<{}> = (props) => {
                         positionX={img.positionX}
                         positionY={img.positionY}
                         positionZ={img.positionZ}
+                        tempUrl={img?.tempUrl}
                     />
                 ))}
                 {fontsData.map((font) => (

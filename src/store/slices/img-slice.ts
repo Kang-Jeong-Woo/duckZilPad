@@ -18,6 +18,7 @@ export interface imgDataState {
     positionX: number,
     positionY: number,
     positionZ: number,
+    tempUrl?:string
 }
 
 const initialState: imgState = {isInit: true, imgData: []}
@@ -35,7 +36,7 @@ const ImgSlice = createSlice({
             }
             return
         },
-        addImg(state, action:PayloadAction<{userId: string, title: string, content: string}>) {
+        addImg(state, action:PayloadAction<{userId: string, title: string, content: string, tempUrl:string}>) {
 
             const imgDefaultData = {
                 _id: String(Math.random()),
@@ -49,7 +50,8 @@ const ImgSlice = createSlice({
                 pinned: false,
                 isDelete: false,
                 title:action.payload.title,
-                content: action.payload.content
+                content: action.payload.content,
+                tempUrl:action.payload.tempUrl
             }
             state.imgData.push(imgDefaultData);
 

@@ -14,7 +14,7 @@ const ImgAddForm:React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
     const userId = useAppSelector((state: RootState) => state.user.userData.userId);
-    const addPostIt = (data:{userId: string, title: string, content: string}) => {dispatch(ImgActions.addImg(data));}
+    const addPostIt = (data:{userId: string, title: string, content: string, tempUrl:string}) => {dispatch(ImgActions.addImg(data));}
     const handleClickFileInput = () => {fileInputRef.current?.click()};
     const uploadFile = (event:React.ChangeEvent<HTMLInputElement>) => {
         const fileList = event.target.files;
@@ -27,6 +27,7 @@ const ImgAddForm:React.FC = () => {
                 type: fileList[0].type.slice(0, 5),
                 path: `/${fileList[0].name}`
             })
+
         }
     };
     const showImg = useMemo(()=>{
@@ -47,7 +48,7 @@ const ImgAddForm:React.FC = () => {
             const fileName = userId + "-" + Date.now() + ext
             //파일 경로
             const imgPath =  "/" + userId + "/" + fileName
-            addPostIt({userId: userId!, title: enteredTitle!, content: imgPath})
+            addPostIt({userId: userId!, title: enteredTitle!, content: imgPath, tempUrl:imgFile!.thumbnail})
             //폼데이터 생성
             const formData = new FormData()
             formData.set('image', uploadedImage, fileName)
