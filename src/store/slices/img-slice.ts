@@ -73,7 +73,7 @@ const ImgSlice = createSlice({
             if(editAry !== undefined) {
                 editAry.positionX=newData.x
                 editAry.positionY=newData.y
-            }  
+            }
         },
         updateWHPosition(state, action:PayloadAction<{id: string, x: number, y: number, h: number, w: number, colName: string}>){
             const newData = action.payload;

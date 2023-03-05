@@ -2,17 +2,29 @@ import classes from "./Container.module.css";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import React from "react";
+import {getCookie} from "@/lib/cookie";
+import jwt from "jsonwebtoken";
+import {useAppSelector} from "@/store/hooks";
+import {RootState} from "@/store/store";
 
 const Container:React.FC<{
     children:React.ReactNode
 }> = (props) => {
     const router = useRouter();
+    const userInfo = useAppSelector((state:RootState) => state.user);
     const isLoggedIn = () => {
-        if(localStorage.getItem("userId")){
-            router.push("/"+localStorage.getItem("userId"));
-        } else {
+        if(userInfo.isLogIn){
+            router.push(`/${userInfo.userData.nick}`)
+        }else{
             router.push("/log-in")
         }
+        // if(getCookie("accessToken")){
+        //     const data: any = jwt.verify(getCookie("accessToken"), process.env.ACCESS_SECRET||"");
+        //     router.push("/"+data.nick);
+        // } else {
+        //     router.push("/log-in")
+        // }
+
     }
 
     return(

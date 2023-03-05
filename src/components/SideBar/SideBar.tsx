@@ -38,7 +38,8 @@ const SideBar:React.FC<{}> = () => {
     }
     const logOut = () => {
         removeCookie("accessToken");
-        localStorage.removeItem("userId");
+        dispatch(userActions.userClear());
+        // localStorage.removeItem("userId");
         router.push("/");
     }
     return(

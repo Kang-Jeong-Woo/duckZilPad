@@ -58,6 +58,19 @@ const Canvas: React.FC<{
             .then((result) => {
               if (result.status === 200) {
                   console.log(result.data)
+                  // dispatch(tableActions.tableClear());
+                  // dispatch(fontActions.fontClear());
+                  // dispatch(ImgActions.ImgClear());
+                  // dispatch(canvasActions.canvasClear());
+                  // axios.post(
+                  //     "/api/savedata/success",
+                  //     { accessToken: getCookie("accessToken") })
+                  //     .then((result)=>{
+                  //         dispatch(tableActions.setTable(result.data.tableData));
+                  //         dispatch(fontActions.setFont(result.data.fontData));
+                  //         dispatch(ImgActions.setImg(result.data.imgData));
+                  //         dispatch(canvasActions.setDrawData(result.data.drawData));
+                  //     })
               }
             })
         } catch (error) {

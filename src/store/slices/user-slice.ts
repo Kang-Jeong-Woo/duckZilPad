@@ -6,11 +6,12 @@ export interface userState {
         userId?: string,
         nick?: string,
         roll?: number
-    }
+    },
+    isLogIn : boolean
 }
 
 const initialState: userState = {
-    userData: {}
+    userData: {}, isLogIn:false
 }
 
 const userSlice = createSlice({
@@ -18,6 +19,7 @@ const userSlice = createSlice({
     initialState,
     reducers:{
         setUser(state, action: PayloadAction<object>){
+            state.isLogIn = true;
             state.userData = action.payload;
         },
         userClear() {

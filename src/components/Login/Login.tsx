@@ -29,7 +29,6 @@ export default function Login() {
                 { userId: loginData.userId, password: loginData.password }
             ).then((result) => {
                 if (result.status === 200) {
-                    localStorage.setItem("userId", JSON.stringify(loginData.userId));
                     const accessToken = result.data.accessToken;
                     const refreshToken = result.data.refreshToken;
                     setCookie("accessToken", accessToken, {

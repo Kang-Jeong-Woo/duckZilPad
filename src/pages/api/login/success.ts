@@ -6,6 +6,8 @@ import TableData from "@/models/TableData";
 import FontData from "@/models/FontData";
 import DrawData from "@/models/DrawData";
 import ImgData from "@/models/ImgData";
+import {tableDataState} from "@/store/slices/table-slice";
+import {fontDataState} from "@/store/slices/font-slice";
 
 interface userData {
     userId: string,

@@ -12,6 +12,7 @@ export const config = {
 export default async function handler( req: NextApiRequest & { files: any[] }, res: NextApiResponse ) {
 
     const referer: any = req.headers.referer
+    // 유저 정보 찾아오는 코드
     const userId = String(referer).split("/")[3]
     // userId 경로 저장
     const path = `public/${userId}/`;

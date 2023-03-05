@@ -10,6 +10,7 @@ export interface canvasState {
 }
 
 export interface drawData {
+    _id?:string
     userId: string,
     drawData?:string
 }
