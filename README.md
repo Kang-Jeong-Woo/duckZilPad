@@ -14,13 +14,20 @@
   Therefore, we were planned to create an online space
 
 ## 📅 Duration of Project
-
+![DPprojectDuration](https://user-images.githubusercontent.com/104994979/222954159-e9742033-9850-420a-86e2-884e3ba1fd8a.png)
 
 ## 🎤 Key Features
 1. uploads img
+![img](https://user-images.githubusercontent.com/104994979/222954173-249cdd0e-f8d8-450e-a273-03d74f4a0f9a.gif)
+
 2. decorate "BulletinBoard"
+![canvas](https://user-images.githubusercontent.com/104994979/222954192-98b2ecef-45af-471b-b1fa-eb59d1bf6efd.gif)
+
 3. add font, table
+![table](https://user-images.githubusercontent.com/104994979/222954183-a6fc0e00-8f88-45a3-9946-5baa44964789.gif)
+
 4. drawing! and Save!
+![font](https://user-images.githubusercontent.com/104994979/222954239-f66ef8b6-2ecc-4ac7-b80e-99cb3dc87633.gif)
 
 ## 🔧 Tool & Skill Stack
 <table>
@@ -81,8 +88,8 @@
     </tr>
 </table>
 
-## 🎵 E-RDiagram
-<사진>
+## 🎵 WorkFlow
+![my-Roadmap (2)](https://user-images.githubusercontent.com/104994979/222954265-42cc74f3-4e83-47fa-84a3-4384e5786052.png)
 
 ## 🎙 Team
 <table>
