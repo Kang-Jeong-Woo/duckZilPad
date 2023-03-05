@@ -33,6 +33,7 @@ const SignUp:React.FC = () => {
             console.log(result)
             if (result.status === 200) {
                 console.log(result.data)
+                alert("Sign-up success")
                 dispatch(setLoginMode())
             }
         })

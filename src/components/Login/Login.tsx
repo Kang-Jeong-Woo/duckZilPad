@@ -43,7 +43,7 @@ export default function Login() {
                         sameSite: 'strict',
                         HttpOnly: true
                     })
-                    router.push("/" + loginData.userId)
+                    router.push("/" + result.data.nick)
                 }
               })
             .catch((error)=>{

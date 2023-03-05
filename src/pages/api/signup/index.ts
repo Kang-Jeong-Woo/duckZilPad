@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/mongoose/dbConnect";
-import User, { user } from "@/models/User";
+import User from "@/models/User";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

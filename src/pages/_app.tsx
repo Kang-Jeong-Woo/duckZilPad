@@ -13,29 +13,29 @@ config.autoAddCss = false
 
 export default function App({ Component, pageProps }:AppProps) {
     const [loading, setLoading] = useState<boolean>(false);
-    useEffect(() => {
-        // const showRoute = ['/log-in',`/`]
-        // const Start = (url:string) => {
-        //     if(showRoute.find(route=>String(url).includes(route))){
-        //         setLoading(true);
-        //     }
-        // }
-        // const End = (url:string) => {
-        //     if(showRoute.find(route => String(url).includes(route))){
-        //         setLoading(false);
-        //     }
-        // }
-        const Start = () => {setLoading(true)}
-        const End = () => {setLoading(false)}
-        Router.events.on("routeChangeStart", Start);
-        Router.events.on("routeChangeComplete", End);
-        Router.events.on("routeChangeError", End);
-        return () => {
-            Router.events.off("routeChangeStart", Start);
-            Router.events.off("routeChangeComplete", End);
-            Router.events.off("routeChangeError", End);
-        }
-    }, []);
+    // useEffect(() => {
+    //     // const showRoute = ['/log-in',`/`]
+    //     // const Start = (url:string) => {
+    //     //     if(showRoute.find(route=>String(url).includes(route))){
+    //     //         setLoading(true);
+    //     //     }
+    //     // }
+    //     // const End = (url:string) => {
+    //     //     if(showRoute.find(route => String(url).includes(route))){
+    //     //         setLoading(false);
+    //     //     }
+    //     // }
+    //     const Start = () => {setLoading(true)}
+    //     const End = () => {setLoading(false)}
+    //     Router.events.on("routeChangeStart", Start);
+    //     Router.events.on("routeChangeComplete", End);
+    //     Router.events.on("routeChangeError", End);
+    //     return () => {
+    //         Router.events.off("routeChangeStart", Start);
+    //         Router.events.off("routeChangeComplete", End);
+    //         Router.events.off("routeChangeError", End);
+    //     }
+    // }, []);
     return loading ? <Loading/>:
         (
         <>

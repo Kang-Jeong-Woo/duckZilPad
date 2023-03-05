@@ -6,8 +6,7 @@ import TableData from "@/models/TableData";
 import FontData from "@/models/FontData";
 import DrawData from "@/models/DrawData";
 import ImgData from "@/models/ImgData";
-import {tableDataState} from "@/store/slices/table-slice";
-import {fontDataState} from "@/store/slices/font-slice";
+import { drawDataState, fontDataState, imgDataState, tableDataState } from "@/types/postItDataType";
 
 interface userData {
     userId: string,
@@ -26,10 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const userData: userData = await User.findOne({ userId:data.userId }).select('userId nick role')
             // 검증 성공 시 데이터 전달
             if(userData) {
-                const tableData = await TableData.find({ userId:userData.userId })
-                const fontData = await FontData.find({ userId:userData.userId })
-                const drawData = await DrawData.find({ userId:userData.userId })
-                const imgData = await ImgData.find({ userId:userData.userId })
+                const tableData: tableDataState[] = await TableData.find({ userId:userData.userId });
+                const fontData: fontDataState[] = await FontData.find({ userId:userData.userId });
+                const drawData: drawDataState|null = await DrawData.findOne({ userId:userData.userId });
+                const imgData: imgDataState[] = await ImgData.find({ userId:userData.userId });
                 res.status(200).json({userData: userData, tableData: tableData, fontData: fontData, drawData: drawData, imgData: imgData});
             } else {
                 res.status(500).json({ success: false, message: "Token signing failed." });

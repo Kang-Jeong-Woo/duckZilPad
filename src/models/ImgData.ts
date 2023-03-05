@@ -1,7 +1,6 @@
 import { Model, model, models, Schema } from 'mongoose';
 
 interface imgData {
-
     userId: string,
     title: string,
     content: string,
@@ -13,13 +12,11 @@ interface imgData {
     positionX: number,
     positionY: number,
     positionZ: number
-
 }
 
 interface imgDataModel extends Model<imgData> {}
 
 const imgDataSchema = new Schema({
-
     userId: {
         type: String,
         trim: true
@@ -57,7 +54,6 @@ const imgDataSchema = new Schema({
     positionZ: {
         type: Number
     }
-
 })
 
 const ImgData = models.imgData || model<imgData, imgDataModel>('imgData', imgDataSchema);

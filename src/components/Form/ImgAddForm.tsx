@@ -1,6 +1,6 @@
 import React, {useMemo, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {ImgActions} from "@/store/slices/img-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {RootState} from "@/store/store";
 import ShowFileImg from "@/components/Form/ShowFileImg";
 import classes from "@/components/Form/Form.module.css";
@@ -13,8 +13,11 @@ const ImgAddForm:React.FC = () => {
     const [imgFile, setImgFile] = useState<{file:File, thumbnail:string, type:string, path:string}>();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
-    const userId = useAppSelector((state: RootState) => state.user.userData.userId);
-    const addPostIt = (data:{userId: string, title: string, content: string, tempUrl:string}) => {dispatch(ImgActions.addImg(data));}
+    const userData = useAppSelector((state: RootState) => state.user.userData);
+    const colName = 'img'
+    const addPostIt = (data:{title: string, content: string, tempUrl:string}) => {
+        dispatch(postItDataActions.addData({userId: userData.userId!, colName: colName, img: data}));
+    }
     const handleClickFileInput = () => {fileInputRef.current?.click()};
     const uploadFile = (event:React.ChangeEvent<HTMLInputElement>) => {
         const fileList = event.target.files;
@@ -45,10 +48,10 @@ const ImgAddForm:React.FC = () => {
             // 이미지 확장자
             const ext = path.extname(imgFile!.path);
             // 파일명 중복이름 방지
-            const fileName = userId + "-" + Date.now() + ext
+            const fileName = userData.nick + "-" + Date.now() + ext
             //파일 경로
-            const imgPath =  "/" + userId + "/" + fileName
-            addPostIt({userId: userId!, title: enteredTitle!, content: imgPath, tempUrl:imgFile!.thumbnail})
+            const imgPath =  "/" + userData.nick + "/" + fileName
+            addPostIt({title: enteredTitle!, content: imgPath, tempUrl: imgFile!.thumbnail})
             //폼데이터 생성
             const formData = new FormData()
             formData.set('image', uploadedImage, fileName)
@@ -64,7 +67,7 @@ const ImgAddForm:React.FC = () => {
                         console.log(error);
                     });
             } catch (error) {
-                console.log(error);
+                console.log("Storage connection fail..");
             }
         }
         dispatch(addMenuActions.close());

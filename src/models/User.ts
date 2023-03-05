@@ -1,18 +1,15 @@
 import { Model, model, Schema, models } from 'mongoose';
 
 export interface user {
-
     userId: string,
     password: string,
     nick: string,
     role: number
-
 }
 
 interface userModel extends Model<user> {}
 
 const userSchema = new Schema({
-
     userId: {
         type: String,
         trim: true,
@@ -30,8 +27,6 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     }
-
-
 })
 
 const User = models.User || model<user, userModel>('User', userSchema)

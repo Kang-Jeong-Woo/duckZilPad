@@ -11,9 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const { userId } = req.query;
             await dbConnect()
              // 아이디 중복 확인
-            User.findOne({ userId: userId })
-            .then((userInfo: user)=>{
-                res.status(200).json(userInfo.userId)
+            await User.findOne({ userId: userId })
+            .then((userData: user)=>{
+                res.status(200).json(userData.userId)
             })
             .catch(()=>{
                 res.json("")

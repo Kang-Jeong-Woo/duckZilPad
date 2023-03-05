@@ -8,9 +8,9 @@ import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
 
 const BulletinBoard: React.FC<{}> = (props) => {
-    const tablesData = useAppSelector((state: RootState) => state.table.tableData);
-    const fontsData = useAppSelector((state: RootState) => state.font.fontData);
-    const ImgsData = useAppSelector((state: RootState) => state.img.imgData);
+    const tablesData = useAppSelector((state: RootState) => state.data.tableData);
+    const fontsData = useAppSelector((state: RootState) => state.data.fontData);
+    const ImgsData = useAppSelector((state: RootState) => state.data.imgData);
 
     return (
         <Body>

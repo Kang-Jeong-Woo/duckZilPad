@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const accessToken = jwt.sign({
               userId : userInfo.userId,
               nick: userInfo.nick
-          }, process.env.ACCESS_SECRET||"", {
+          }, process.env.ACCESS_SECRET!, {
               expiresIn : "2h",
               issuer: "SM"
           });
@@ -26,12 +26,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const refreshToken = jwt.sign({
               userId : userInfo.userId,
               nick: userInfo.nick
-          }, process.env.REFRESH_SECRET||"", {
+          }, process.env.REFRESH_SECRET!, {
               expiresIn : "24h",
               issuer: "SM"
           });
           //토큰을 담아서 Response
-          res.status(200).json({ success: true, accessToken, refreshToken });
+          res.status(200).json({ success: true, accessToken, refreshToken, nick: userInfo.nick });
         } catch (err) {
           console.log(err);
           res.status(500).json({ success: false, message: "Token signing failed." });

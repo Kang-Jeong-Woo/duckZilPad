@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {tableActions} from "@/store/slices/table-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {RootState} from "@/store/store";
 import classes from "@/components/Form/Form.module.css";
@@ -11,7 +11,7 @@ const TableAddForm:React.FC = () => {
     const [fontColor, setFontColor] = useState<string>("");
     const [borderColor, setBorderColor] = useState<string>("");
     const userId = useAppSelector((state: RootState) => state.user.userData.userId);
-
+    const colName = 'table'
     const setFontFn = (event:React.ChangeEvent<HTMLSelectElement>) => {
         {setFont(event.target.value)}
     }
@@ -28,7 +28,6 @@ const TableAddForm:React.FC = () => {
         event.preventDefault();
         if(font !== "Choose the font you want."){
             const data = {
-                userId: userId!,
                 style: {font: font},
                 color: {
                     font: fontColor,
@@ -36,7 +35,7 @@ const TableAddForm:React.FC = () => {
                     back: bgColor
                 }
             }
-            dispatch(tableActions.addTable(data));
+            dispatch(postItDataActions.addData({userId: userId!, colName: colName, table: data}));
             return
         }
         alert("Please check the content and font style again.");

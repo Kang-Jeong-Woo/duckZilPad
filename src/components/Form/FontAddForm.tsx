@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {RootState} from "@/store/store";
-import {fontActions} from "@/store/slices/font-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import classes from "./Form.module.css";
 
 const FontAddForm:React.FC = () => {
@@ -10,19 +10,21 @@ const FontAddForm:React.FC = () => {
     const colorRef = useRef<HTMLInputElement>(null);
     const styleRef = useRef<HTMLSelectElement>(null);
     const userId = useAppSelector((state: RootState) => state.user.userData.userId);
+    const colName = 'font'
     const addFont = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if(inputRef.current?.value.trim().length !==0 && styleRef.current?.value !== ""){
-            const data = {
-                userId: userId!,
-                content: inputRef.current!.value,
-                style: styleRef.current!.value,
-                color: colorRef.current!.value
+        if(userId) {
+            if(inputRef.current?.value.trim().length !==0 && styleRef.current?.value !== ""){
+                const data = {
+                    content: inputRef.current!.value,
+                    style: styleRef.current!.value,
+                    color: colorRef.current!.value
+                }
+                dispatch(postItDataActions.addData({userId: userId, colName: colName, font: data}));
+                return
             }
-            dispatch(fontActions.addFont(data));
-            return
+            alert("Please check the content and font style again.");
         }
-        alert("Please check the content and font style again.");
     }
     return(
         <>

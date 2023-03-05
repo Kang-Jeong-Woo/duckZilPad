@@ -1,7 +1,6 @@
 import { Model, model, models, Schema } from 'mongoose';
 
 interface fontData {
-
     userId: string,
     content: string,
     pinned: boolean,
@@ -14,13 +13,11 @@ interface fontData {
     positionY: number,
     positionZ: number,
     degree: number
-
 }
 
 interface fontDataModel extends Model<fontData> {}
 
 const fontDataSchema = new Schema<fontData>({
-
     userId: {
         type: String,
         trim: true
@@ -61,7 +58,6 @@ const fontDataSchema = new Schema<fontData>({
     degree: {
         type: Number
     }
-
 })
 
 const FontData = models.FontData || model<fontData, fontDataModel>("FontData", fontDataSchema);

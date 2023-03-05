@@ -4,14 +4,11 @@ import styled from "styled-components";
 import Head from "next/head";
 import axios from "axios";
 import {useEffect} from "react";
-import {tableActions} from "@/store/slices/table-slice";
-import {fontActions} from "@/store/slices/font-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {userActions} from "@/store/slices/user-slice";
-import {canvasActions} from "@/store/slices/canvas-slice";
 import {getCookie, setCookie} from "@/lib/cookie";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import { useRouter } from "next/navigation";
-import {ImgActions} from "@/store/slices/img-slice";
 import {RootState} from "@/store/store";
 import logo from "/public/logo.jpg"
 
@@ -25,12 +22,16 @@ function HomePage() {
             axios.post("/api/login/success",
                 {accessToken: getCookie("accessToken")})
                 .then((result) => {
-                    if (result.data) {
+                    if (result.data.userData) {
                         dispatch(userActions.setUser(result.data.userData));
-                        dispatch(tableActions.setTable(result.data.tableData));
-                        dispatch(fontActions.setFont(result.data.fontData));
-                        dispatch(ImgActions.setImg(result.data.imgData));
-                        dispatch(canvasActions.setDrawData(result.data.drawData[0]));
+                        dispatch(postItDataActions.setData({
+                            fontData: result.data.fontData,
+                            imgData: result.data.imgData,
+                            tableData: result.data.tableData,
+                            drawData: result.data.drawData
+                        }))
+                    } else {
+                        alert("데이터 로딩 실패");
                     }
                 })
                 .catch((error) => {
@@ -64,7 +65,6 @@ function HomePage() {
                 console.log(error);
                 alert("Token signing failed.")
                 router.push("/")
-
             });
     }), 7200000)
 
@@ -93,7 +93,6 @@ function HomePage() {
                 <meta name="theme-color" content="#111111"/>
             </Head>
             <HomeCntnr>
-
                 <SideBar/>
                 <BulletinBoard/>
             </HomeCntnr>

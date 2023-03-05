@@ -1,9 +1,8 @@
 import React, {useRef, useState} from "react";
 import {useAppDispatch} from "@/store/hooks";
-import {ImgActions} from "@/store/slices/img-slice";
 import {DraggableData, Rnd, RndDragCallback, RndResizeCallback} from "react-rnd";
 import {DraggableEvent} from "react-draggable";
-import {tableActions} from "@/store/slices/table-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faArrowDownWideShort,
@@ -35,22 +34,21 @@ const TablePostIt: React.FC<{
     const [picWidth, setPicWidth] = useState<number>();
     const [picHeight, setPicHeight] = useState<number>();
     const [isFirstLoad, setFirstLoad] = useState<boolean>(true);
+    const colName = 'table'
     const setZIndex = (cur:number, next:number) => {
         return next > cur ? next : cur;
     }
     const pinEvent = () => {setDraggable(!draggable)};
     const editEvent = () => {setIsEdit(!isEdit)};
-    const closeEvent = () => {dispatch(tableActions.deleteTable(props.id))};
+    const closeEvent = () => {dispatch(postItDataActions.deleteData({colName: colName, id: props.id}))};
     const mouseIn = () => {tabRef.current!.style.top = "0px"};
     const mouseOut = () => {tabRef.current!.style.top = "-23px"};
     const dragStart:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const setIndex = setZIndex(+d.node.style.zIndex, +d.node.style.zIndex + 1);
-        const Z = {id: id, z: setIndex, colName: "postItsData"};
-        dispatch(tableActions.updateZIndex(Z));
+        dispatch(postItDataActions.updateZIndex({id: id, z: setIndex, colName: colName}));
     }
     const dragStop:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
-        const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
-        dispatch(tableActions.updateXYPosition(XY));
+        dispatch(postItDataActions.updateXYPosition({id: id, x: d.x, y: d.y, colName: colName}));
     }
     const resizeStart:RndResizeCallback = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -62,22 +60,21 @@ const TablePostIt: React.FC<{
     const resizeStop:RndResizeCallback = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
-        dispatch(tableActions.updateWHPosition(XYHW));
+        dispatch(postItDataActions.updateWHPosition({id: id, x: position.x, y: position.y, h: height, w: width, colName: colName}));
     }
 
     const editComponent = (<>
         <TabText>
             <FontAwesomeIcon style={{color: "orange"}} icon={faArrowsLeftRightToLine}/>
-            <button onClick={() => {dispatch(tableActions.addColumn(props.id))}}>+</button>
+            <button onClick={() => {dispatch(postItDataActions.addTableColumn({colName: colName, id: props.id}))}}>+</button>
             {props.content.titles.length}
-            <button onClick={() => {dispatch(tableActions.deleteColumn(props.id))}}>-</button>
+            <button onClick={() => {dispatch(postItDataActions.deleteTableColumn({colName: colName, id: props.id}))}}>-</button>
         </TabText>
         <TabText>
             <FontAwesomeIcon style={{color: "orange"}} icon={faArrowDownWideShort}/>
-            <button onClick={() => {dispatch(tableActions.addRow(props.id))}}>+</button>
+            <button onClick={() => {dispatch(postItDataActions.addTableRow({colName: colName, id: props.id}))}}>+</button>
             {props.content.contents.length}
-            <button onClick={() => {dispatch(tableActions.deleteRow(props.id))}}>-</button>
+            <button onClick={() => {dispatch(postItDataActions.deleteTableRow({colName: colName, id: props.id}))}}>-</button>
         </TabText>
         <TabBtn onClick={editEvent}>
             <FontAwesomeIcon style={{color: "green"}} icon={faCheck}/>
@@ -106,8 +103,8 @@ const TablePostIt: React.FC<{
         {props.content.titles.map((title, index) => (
             <td key={"T" + index} style={{border: `${props.color.border} 1px solid`}}>
                 <EditInput type={"text"} defaultValue={title} onChange={e => {
-                       dispatch(tableActions.updateTitle({
-                           id: props.id, i: index, type: "title", value: e.target.value
+                       dispatch(postItDataActions.updateTableTitle({
+                           colName: colName, id: props.id, i: index, type: "title", value: e.target.value
                        }))
                    }}
                 />
@@ -132,7 +129,8 @@ const TablePostIt: React.FC<{
                     {content.map((data, index) => (
                         <td key={index} style={{border: `${props.color.border} 1px solid`}}>
                             <EditInput type={"text"} defaultValue={data} onChange={e => {
-                                dispatch(tableActions.updateContent({
+                                dispatch(postItDataActions.updateTableContent({
+                                   colName: colName,
                                    id: props.id,
                                    column: colIndex,
                                    type: "content",

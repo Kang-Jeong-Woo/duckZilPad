@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {useAppDispatch} from "@/store/hooks";
-import {ImgActions} from "@/store/slices/img-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {DraggableData, Rnd, RndDragCallback, RndResizeCallback} from "react-rnd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
@@ -28,21 +28,20 @@ const ImgPostIt:React.FC<{
     const [picWidth, setPicWidth] = useState<number>();
     const [picHeight, setPicHeight] = useState<number>();
     const [isFirstLoad, setFirstLoad] = useState<boolean>(true);
+    const colName = 'img'
     const setZIndex = (cur:number, next:number) => {
         return next > cur ? next : cur;
     }
     const pinEvent = () => {setDraggable(!draggable)};
-    const closeEvent = () => {dispatch(ImgActions.deleteImg(props.id))};
+    const closeEvent = () => {dispatch(postItDataActions.deleteData({colName: colName, id: props.id}))};
     const mouseIn = () => {tabRef.current!.style.top = "0px"};
     const mouseOut = () => {tabRef.current!.style.top = "-23px"};
     const dragStart:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const setIndex = setZIndex(+d.node.style.zIndex, +d.node.style.zIndex + 1);
-        const Z = {id: id, z: setIndex, colName: "postItsData"};
-        dispatch(ImgActions.updateZIndex(Z));
+        dispatch(postItDataActions.updateZIndex({id: id, z: setIndex, colName: colName}));
     }
     const dragStop:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
-        const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
-        dispatch(ImgActions.updateXYPosition(XY));
+        dispatch(postItDataActions.updateXYPosition( {id: id, x: d.x, y: d.y, colName: colName}));
     }
     const resizeStart:RndResizeCallback = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -54,8 +53,7 @@ const ImgPostIt:React.FC<{
     const resizeStop:RndResizeCallback = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
-        dispatch(ImgActions.updateWHPosition(XYHW));
+        dispatch(postItDataActions.updateWHPosition({id: id, x: position.x, y: position.y, h: height, w: width, colName: colName}));
     }
     return(
         <Rnd minWidth={100}

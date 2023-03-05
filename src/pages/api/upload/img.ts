@@ -13,12 +13,12 @@ export default async function handler( req: NextApiRequest & { files: any[] }, r
 
     const referer: any = req.headers.referer
     // 유저 정보 찾아오는 코드
-    const userId = String(referer).split("/")[3]
-    // userId 경로 저장
-    const path = `public/${userId}/`;
-    if(!fs.existsSync(`public/${userId}`)) {
-        console.log(`${userId} 폴더가 없습니다. 폴더를 생성합니다.`);
-        fs.mkdirSync(`public/${userId}`); // 폴더 생성
+    const nick = String(referer).split("/")[3]
+    // nick 경로 저장
+    const path = `public/${nick}/`;
+    if(!fs.existsSync(`public/${nick}`)) {
+        console.log(`${nick} 폴더가 없습니다. 폴더를 생성합니다.`);
+        fs.mkdirSync(`public/${nick}`); // 폴더 생성
     }
     const Form = new formidable.IncomingForm({     
         maxFileSize: 5 * 1024 * 1024,

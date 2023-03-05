@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState, WheelEvent} from "react";
 import {useAppDispatch} from "@/store/hooks";
 import {DraggableData, Rnd, RndDragCallback, RndResizeCallback} from "react-rnd";
 import {DraggableEvent} from "react-draggable";
-import {fontActions} from "@/store/slices/font-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -30,11 +30,12 @@ const FontPostIt: React.FC<{
     const [picWidth, setPicWidth] = useState<number>();
     const [picHeight, setPicHeight] = useState<number>();
     const [isFirstLoad, setFirstLoad] = useState<boolean>(true);
+    const colName = 'font'
     const setZIndex = (cur:number, next:number) => {
         return next > cur ? next : cur;
     }
     const pinEvent = () => {setDraggable(!draggable)};
-    const closeEvent = () => {dispatch(fontActions.deleteFont(props.id))};
+    const closeEvent = () => {dispatch(postItDataActions.deleteData({colName: colName, id: props.id}))};
     const mouseIn = () => {tabRef.current!.style.top = "0px"};
     const mouseOut = () => {tabRef.current!.style.top = "-23px"};
     const wheelEvent = (event:WheelEvent) => {
@@ -46,8 +47,7 @@ const FontPostIt: React.FC<{
     }
     useEffect(()=>{
         const setDegree = setTimeout((id=props.id)=>{
-            const degreeData = {id:id, degree:degree, colName:"fontData"}
-            dispatch(fontActions.updateDegree(degreeData));
+            dispatch(postItDataActions.updateFontDegree({id:id, degree:degree, colName:colName}));
         },1000);
         return () => {
             clearTimeout(setDegree);
@@ -55,12 +55,10 @@ const FontPostIt: React.FC<{
     },[wheelEvent])
     const dragStart:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
         const setIndex = setZIndex(+d.node.style.zIndex, +d.node.style.zIndex + 1);
-        const Z = {id: id, z: setIndex, colName: "postItsData"};
-        dispatch(fontActions.updateZIndex(Z));
+        dispatch(postItDataActions.updateZIndex({id: id, z: setIndex, colName: colName}));
     }
     const dragStop:RndDragCallback = (e:DraggableEvent, d:DraggableData, id = props.id) => {
-        const XY = {id: id, x: d.x, y: d.y, colName: "postItsData"}
-        dispatch(fontActions.updateXYPosition(XY));
+        dispatch(postItDataActions.updateXYPosition({id: id, x: d.x, y: d.y, colName: colName}));
     }
     const resizeStart:RndResizeCallback = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -72,8 +70,7 @@ const FontPostIt: React.FC<{
     const resizeStop:RndResizeCallback = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postItsData"}
-        dispatch(fontActions.updateWHPosition(XYHW));
+        dispatch(postItDataActions.updateWHPosition({id: id, x: position.x, y: position.y, h: height, w: width, colName: colName}));
     }
     return(
         <Rnd minWidth={100} minHeight={100} bounds={"parent"} disableDragging={draggable}

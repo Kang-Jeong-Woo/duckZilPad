@@ -1,7 +1,6 @@
 import { Model, model, models, Schema } from 'mongoose';
 
 interface tableData {
-
     userId: string,
     contents: object,
     pinned: boolean,
@@ -13,13 +12,11 @@ interface tableData {
     positionX: number,
     positionY: number,
     positionZ: number,
-
 }
 
 interface tableDataModel extends Model<tableData> {}
 
 const tableDataSchema = new Schema({
-
     userId: {
             type: String,
             trim: true

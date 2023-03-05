@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import React, {useEffect, useRef, useState} from "react";
 import {RootState} from "@/store/store";
-import {canvasActions} from "@/store/slices/canvas-slice";
+import {postItDataActions} from "@/store/slices/postItDataSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faArrowRotateBackward,
@@ -9,30 +9,28 @@ import {
     faFloppyDisk,
     faPaintbrush,
     faPalette,
-    faPen
-} from "@fortawesome/free-solid-svg-icons";
+    faPen } from "@fortawesome/free-solid-svg-icons";
 import CanvasDraw from "react-canvas-draw";
 import styled, {keyframes} from "styled-components";
 import axios from "axios";
 import { getCookie } from "@/lib/cookie";
-import { tableActions } from "@/store/slices/table-slice";
-import { fontActions } from "@/store/slices/font-slice";
-import {ImgActions} from "@/store/slices/img-slice";
-import {router} from "next/client";
+import { useRouter } from "next/navigation";
 
 const Canvas: React.FC<{
 }> = () => {
+    const router = useRouter();
     const dispatch = useAppDispatch();
     const canvasRef = useRef<CanvasDraw>(null);
     const penRef = useRef<HTMLDivElement>(null);
     const saveRef = useRef<HTMLDivElement>(null);
     const [canvasWidth, setCanvasWidth] = useState(3000);
     const [canvasHeight, setCanvasHeight] = useState(1500);
-    const canvasData = useAppSelector((state:RootState) => state.canvas);
-    const imgData = useAppSelector((state:RootState)=>state.img.imgData);
-    const fontData = useAppSelector((state:RootState)=>state.font.fontData);
-    const tableData = useAppSelector((state:RootState)=>state.table.tableData);
+    const canvasData = useAppSelector((state:RootState) => state.data.canvasData);
+    const imgData = useAppSelector((state:RootState)=>state.data.imgData);
+    const fontData = useAppSelector((state:RootState)=>state.data.fontData);
+    const tableData = useAppSelector((state:RootState)=>state.data.tableData);
     const userId = useAppSelector((state:RootState)=>state.user.userData.userId);
+    const colName = 'canvas';
     const setHeight = () => (Math.ceil(window.innerHeight - 70))<960?960:Math.ceil(window.innerHeight - 70);
     const setWidth = () => (Math.ceil(window.innerWidth)<1900)?1900:Math.ceil(window.innerWidth);
     const eraseAll = () => {
@@ -40,37 +38,25 @@ const Canvas: React.FC<{
     const undo = () => {
         canvasRef.current!.undo()};
     const changeColor = (event:React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(canvasActions.setColor(event.target.value));
+        dispatch(postItDataActions.setCanvasColor({colName: colName, color: event.target.value}));
     };
     const changeRadius = (event:React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(canvasActions.setRadius(+event.target.value));
+        dispatch(postItDataActions.setCanvasRadius({colName: colName, radius: +event.target.value}));
     };
     const onOffDraw = () => {
-        dispatch(canvasActions.setIsDraw());
+        dispatch(postItDataActions.setCanvasIsDraw({colName: colName}));
     };
-    const onSaveDB = () => {
-        const drawData = {userId:userId, drawData:canvasRef.current!.getSaveData()}
+    const onSaveDB = () => {     
         try {
+            const drawData = {userId: userId, coordinate: canvasRef.current!.getSaveData()}
             axios.post(
               "/api/savedata",
-              { accessToken: getCookie("accessToken"), 
+              {accessToken: getCookie("accessToken"), 
                 tableData: tableData, imgData: imgData, fontData: fontData, drawData: drawData})
             .then((result) => {
               if (result.status === 200) {
                   console.log(result.data)
-                  // dispatch(tableActions.tableClear());
-                  // dispatch(fontActions.fontClear());
-                  // dispatch(ImgActions.ImgClear());
-                  // dispatch(canvasActions.canvasClear());
-                  // axios.post(
-                  //     "/api/savedata/success",
-                  //     { accessToken: getCookie("accessToken") })
-                  //     .then((result)=>{
-                  //         dispatch(tableActions.setTable(result.data.tableData));
-                  //         dispatch(fontActions.setFont(result.data.fontData));
-                  //         dispatch(ImgActions.setImg(result.data.imgData));
-                  //         dispatch(canvasActions.setDrawData(result.data.drawData));
-                  //     })
+                  router.refresh();
               }
             })
         } catch (error) {
@@ -141,7 +127,7 @@ const Canvas: React.FC<{
             </div>
             <CanvasDraw
                 ref={canvasRef}
-                saveData={canvasData.drawData.drawData}
+                saveData={canvasData.drawData.coordinate}
                 canvasWidth={canvasWidth}
                 canvasHeight={canvasHeight}
                 style={{backgroundColor: "#F2F2F2"}}
