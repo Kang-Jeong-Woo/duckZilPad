@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import MainPage from "@/components/Main/MainPage";
 import Container from "@/components/UI/Container";
+import logo from "../../public/logo.jpg";
 
 export default function Home() {
     return (
@@ -15,6 +16,14 @@ export default function Home() {
                 <meta name="author" content="KangJeongWoo"/>
                 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
+
+                <meta property={"og:type"} content={"webstie"}/>
+                <meta property={"og:title"} content={`Duck-Zil Pad`}/>
+                <meta property={"og:description"} content={`Decor ur own Sketch-Pad`}/>
+                <meta property={"og:image"} content={`${logo}`}/>
+                <meta property={"og:url"} content={`https://duck-zil-pad-axwt.vercel.app`}/>
+                <meta property={"og:site_name"} content={"Duck Zil Pad"}/>
+
                 <meta name="theme-color" content="#111111"/>
             </Head>
             <main>

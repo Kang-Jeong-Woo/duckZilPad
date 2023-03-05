@@ -4,13 +4,9 @@ import {RootState} from "@/store/store";
 import React, {useRef, useState} from "react";
 import {addMenuActions} from "@/store/slices/addMenu-slice";
 import {removeCookie} from "@/lib/cookie";
-import {tableActions} from "@/store/slices/table-slice";
-import {fontActions} from "@/store/slices/font-slice";
-import {ImgActions} from "@/store/slices/img-slice";
-import {canvasActions} from "@/store/slices/canvas-slice";
 import {userActions} from "@/store/slices/user-slice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFont, faImage, faTable, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faFont, faImage, faTable, faUser, faHome} from "@fortawesome/free-solid-svg-icons";
 import styled, {keyframes} from "styled-components";
 import Modal from "@/components/UI/Modal";
 import Button from "@/components/UI/Button";
@@ -28,6 +24,7 @@ const SideBar:React.FC<{}> = () => {
     const setPost = () => {dispatch(addMenuActions.setImg())}
     const setTable = () => {dispatch(addMenuActions.setTable())}
     const modalClose = () => {dispatch(addMenuActions.close())}
+    const goHome = () => {router.push("/")}
     const mouseEnter = () => {
         userRef.current!.style.left = "70px"
         userRef.current!.style.opacity = "1"
@@ -45,6 +42,10 @@ const SideBar:React.FC<{}> = () => {
     return(
         <SideBarWrapper>
             <ul>
+
+                <li onClick={goHome}>
+                    <FontAwesomeIcon icon={faHome}/>
+                </li>
 
                 <li onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                     <FontAwesomeIcon icon={faUser}/>

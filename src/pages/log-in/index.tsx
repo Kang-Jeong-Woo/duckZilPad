@@ -4,6 +4,7 @@ import SignUp from "@/components/Login/SignUp";
 import Container from "@/components/UI/Container";
 import { useAppSelector } from '@/store/hooks';
 import { RootState } from '@/store/store';
+import logo from "../../../public/logo.jpg";
 
 const LogInPage = () => {
 
@@ -22,6 +23,14 @@ const LogInPage = () => {
                 <meta name="author" content="KangJeongWoo"/>
                 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
+
+                <meta property={"og:type"} content={"webstie"}/>
+                <meta property={"og:title"} content={`Duck Zil log-in`}/>
+                <meta property={"og:description"} content={`Plz Join Our Duck-Zil Pad`}/>
+                <meta property={"og:image"} content={`${logo}`}/>
+                <meta property={"og:url"} content={`https://duck-zil-pad-axwt.vercel.app/log-in`}/>
+                <meta property={"og:site_name"} content={"Duck Zil Pad"}/>
+
                 <meta name="theme-color" content="#111111"/>
             </Head>
             { loginMode.isLogin ?
