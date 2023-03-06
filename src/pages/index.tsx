@@ -19,7 +19,7 @@ export default function Home() {
 
                 <meta property={"og:type"} content={"webstie"}/>
                 <meta property={"og:title"} content={`Duck-Zil Pad`}/>
-                <meta property={"og:description"} content={`Decor ur own Sketch-Pad`}/>
+                <meta property={"og:description"} content={`정우 & 상민's Project`}/>
                 <meta property={"og:image"} content={`${logo}`}/>
                 <meta property={"og:url"} content={`https://duck-zil-pad-axwt.vercel.app`}/>
                 <meta property={"og:site_name"} content={"Duck Zil Pad"}/>

@@ -83,7 +83,6 @@ const Canvas: React.FC<{
         setCanvasWidth(setWidth());
         setCanvasHeight(setHeight());
     },[]);
-    // @ts-ignore
     return(
         <>
             <div>
@@ -107,7 +106,7 @@ const Canvas: React.FC<{
                         <div>
                             <label htmlFor={"radius"} id={"radius"}>
                                 <FontIcon><FontAwesomeIcon icon={faPaintbrush}/></FontIcon>
-                                <input type="range" id={"radius"} name={"radius"} min={1} max={20} step={0.5}
+                                <input type={"range"} id={"radius"} name={"radius"} min={1} max={20} step={0.5}
                                        value={canvasData.radius} onChange={changeRadius}/>
                             </label>
                         </div>

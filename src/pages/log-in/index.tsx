@@ -26,7 +26,7 @@ const LogInPage = () => {
 
                 <meta property={"og:type"} content={"webstie"}/>
                 <meta property={"og:title"} content={`Duck Zil log-in`}/>
-                <meta property={"og:description"} content={`Plz Join Our Duck-Zil Pad`}/>
+                <meta property={"og:description"} content={`덕질패드에 참여하세요!`}/>
                 <meta property={"og:image"} content={`${logo}`}/>
                 <meta property={"og:url"} content={`https://duck-zil-pad-axwt.vercel.app/log-in`}/>
                 <meta property={"og:site_name"} content={"Duck Zil Pad"}/>

@@ -19,7 +19,6 @@ const BulletinBoard = () => {
     const [startX, setStartX] = useState<number>();
     const [startY, setStartY] = useState<number>();
     const onDragStart = (e:any) => {
-        e.preventDefault();
         if(isMode===false){
             return
         }
@@ -28,7 +27,6 @@ const BulletinBoard = () => {
         setStartY(e.pageY);
     };
     const onDragMove = (e:any) => {
-        e.preventDefault();
         if(isMode===false){
             return
         }

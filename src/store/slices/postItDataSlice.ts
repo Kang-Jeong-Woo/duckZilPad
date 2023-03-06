@@ -72,7 +72,7 @@ const defaultTableData: tableDataState = {
 
 const defaultCanvasData: canvasDataState = {
     drawingOn: true,
-    color: "#ffffff",
+    color: "#111111",
     radius: 1,
     drawData: {userId: "", coordinate: undefined},
 }
