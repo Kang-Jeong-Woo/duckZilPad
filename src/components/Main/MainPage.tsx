@@ -12,7 +12,7 @@ const MainPage:React.FC = () => {
                 <Title>1. Draw with canvas feature!</Title>
                 <ContentCntnr>
                     <VideoCntnr>
-                        <Image src={canvasEx} alt={"캔버스 그리기 기능"} width={300} height={300}/>
+                        <Image src={canvasEx} alt={"캔버스 그리기 기능"} width={200} height={200}/>
                     </VideoCntnr>
                     <span>U can easily on/off pen feature, also u can adjust pen size<br/>And choose the color u want!</span>
                 </ContentCntnr>
@@ -24,14 +24,14 @@ const MainPage:React.FC = () => {
                         Organize pictures, fonts, tables and decorate something you like.<br/>
                     </span>
                     <VideoCntnr>
-                        <Image src={postEx} alt={"다양한 포스트 기능"} width={300} height={300}/>
+                        <Image src={postEx} alt={"다양한 포스트 기능"} width={200} height={200}/>
                     </VideoCntnr>
                 </ContentCntnr>
 
                 <Title>3. Save the last work you did!</Title>
                 <ContentCntnr>
                     <VideoCntnr>
-                        <Image src={saveEx} alt={"저장 기능"} width={300} height={300}/>
+                        <Image src={saveEx} alt={"저장 기능"} width={200} height={200}/>
                     </VideoCntnr>
                     <span>U can save the work u did with the Save button!</span>
                 </ContentCntnr>
@@ -61,6 +61,7 @@ const ContentCntnr = styled.div`
     display: block;
     & span{
       font-size: larger;
+      min-width: 0px;
     }
   }
 `;
@@ -69,8 +70,6 @@ const VideoCntnr = styled.div`
   align-items: center;
   justify-content: center;
   margin: 20px;
-  min-width: 300px;
-  min-height: 300px;
   border: groove;
 `;
 

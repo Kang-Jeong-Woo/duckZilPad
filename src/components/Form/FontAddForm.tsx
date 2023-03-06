@@ -32,14 +32,14 @@ const FontAddForm:React.FC = () => {
             <form className={classes.fontForm} onSubmit={addFont}>
 
                 <div className={classes.contentCntnr}>
-                    <h2><label htmlFor={"content"}>1. Please enter the content.</label></h2>
+                    <h2 className={classes.paragraph}><span>1. Please enter the content.</span></h2>
                     <div className={classes.center}>
                         <input className={classes.input} type="text" id={"content"} name={"content"} ref={inputRef}/>
                     </div>
                 </div>
 
                 <div className={classes.fontCntnr}>
-                    <h2><label htmlFor={"select"}>2. Choose the font you want.</label></h2>
+                    <h2 className={classes.paragraph}><span>2. Choose the font you want.</span></h2>
                     <div className={classes.center}>
                         <select className={classes.select} ref={styleRef} defaultValue={""} id={"select"}>
                             <option defaultValue={""} style={{textAlign:"center"}}>Choose the font.</option>
@@ -52,7 +52,7 @@ const FontAddForm:React.FC = () => {
                 </div>
 
                 <div className={classes.colorCntnr}>
-                    <h2><label htmlFor={"color"}>3. Select the color of the font you want.</label></h2>
+                    <h2 className={classes.paragraph}><span>3. Select the color of the font you want.</span></h2>
                     <div className={classes.center}>
                         <input type={"color"} id={"color"} name={"color"} ref={colorRef}/>
                     </div>

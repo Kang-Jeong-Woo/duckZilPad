@@ -90,4 +90,7 @@ const PostItModal = styled.div`
   padding: 6em;
   z-index: 100000;
   animation: ${slideDown} 300ms ease-out forwards;
+  @media (max-width: 1326px) {
+    padding: 4em;
+  }
 `;

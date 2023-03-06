@@ -11,7 +11,7 @@
     padding: 10px;
 }
 
-.Cntnr button {
+.Cntnr .btn {
     border: none;
     background: inherit;
     color: black;

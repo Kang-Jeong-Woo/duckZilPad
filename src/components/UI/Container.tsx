@@ -23,7 +23,7 @@ const Container:React.FC<{
             <div className={`${classes.Nav} ${classes.border} ${classes.align}`}>
                 <Link href={"/"}>Home</Link>
                 <div> Comming Soon </div>
-                <button onClick={isLoggedIn}>create+</button>
+                <button className={classes.btn} onClick={isLoggedIn}>create+</button>
             </div>
             <div className={`${classes.SideL} ${classes.border} ${classes.center}`}>광고 배너</div>
             <div className={`${classes.SideR} ${classes.border} ${classes.center}`}>광고 배너</div>

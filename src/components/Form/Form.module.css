@@ -130,8 +130,10 @@
     grid-area: contentCntnr;
 }
 
-.contentCntnr label {
-    content: "제목";
+.paragraph {
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow: ellipsis;
 }
 
 .center {
@@ -282,9 +284,19 @@
         border-radius: 20px;
     }
     .fontForm {
+        height: 40vh;
+        display: grid;
+        grid-template-columns: 31% 31% 31%;
+        grid-template-rows: 33% 47% 19%;
+        gap: 0px 0px;
+        grid-template-areas:
+    "contentCntnr fontCntnr colorCntnr"
+    "contentCntnr fontCntnr colorCntnr"
+    "sendCntnr sendCntnr sendCntnr";
+        color: black;
+        font-family: cursive;
+    }
+    .fontForm {
         font-size: smaller;
     }
-}
-@media (max-width: 800px) {
-
 }
