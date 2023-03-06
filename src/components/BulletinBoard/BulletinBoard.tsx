@@ -41,7 +41,6 @@ const BulletinBoard = () => {
     };
     const onDragEnd = () => {setIsDrag(false)};
     const dragClickHandler = () => {setIsMode(!isMode)};
-
     return (
         <Body
             ref={bodyRef}
@@ -112,14 +111,17 @@ const BulletinBoard = () => {
 export default BulletinBoard;
 const Body = styled.div`
   background-color: #F2F2F2;
-  overflow: hidden;
+  overflow: scroll;
+  height: 1000px;
+  ::-webkit-scrollbar {
+    display: none;
+}
 `;
 const BulletinBoardCntnr = styled.div`
   width: 3000px;
   height: 3000px;
   background-color: #F2F2F2;
   position: relative;
-  overflow: auto;
 `;
 const MoveBtn = styled.span`
   list-style: none;

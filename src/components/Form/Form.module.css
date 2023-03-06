@@ -269,6 +269,9 @@
     }
 }
 @media (max-width: 1310px) {
+    .header {
+        font-size: medium;
+    }
     .imgForm {
         font-size: smaller;
     }
@@ -286,17 +289,22 @@
     .fontForm {
         height: 40vh;
         display: grid;
-        grid-template-columns: 31% 31% 31%;
-        grid-template-rows: 33% 47% 19%;
+        grid-template-columns: auto;
+        grid-template-rows: 10vh 10vh 10vh 10vh;
         gap: 0px 0px;
         grid-template-areas:
-    "contentCntnr fontCntnr colorCntnr"
-    "contentCntnr fontCntnr colorCntnr"
-    "sendCntnr sendCntnr sendCntnr";
+    "contentCntnr"
+    "fontCntnr"
+    "colorCntnr"
+    "sendCntnr";
         color: black;
         font-family: cursive;
+        font-size: xx-small;
+        white-space : nowrap;
+        overflow : hidden;
+        text-overflow: ellipsis;
     }
-    .fontForm {
-        font-size: smaller;
+    .contentCntnr, .fontCntnr, .colorCntnr{
+        display: flex;
     }
 }

@@ -44,17 +44,37 @@ const SignUp:React.FC = () => {
     }
 
     // 서버에 아이디 중복체크 요청
-    const idCheck = () => {
+    const duplicateCheck = (type: string) => {
         axios.get(
-            "/api/signup/idcheck",
-            { params: { userId: signUpData.userId } },
+            "/api/signup/duplicatecheck",
+            { params: { type: type, userId: signUpData.userId, nick: signUpData.nick } },
         )
         .then((result) => {
             console.log(result.data)
             if (result.data) {
-                dispatch(userIdCheck(result.data))
+                switch(type) {
+                    case 'userId' :
+                        dispatch(userIdCheck(result.data.userId))
+                        break
+                    case 'nick' :
+                        dispatch(nickCheck(result.data.nick))
+                        break
+                    case 'all' :
+                        dispatch(userIdCheck(result.data.userId))
+                        dispatch(nickCheck(result.data.nick))
+                        break
+                }
             } else {
-                dispatch(userIdCheck(result.data))
+                switch(type) {
+                    case 'userId' :
+                        dispatch(userIdCheck(result.data.userId))
+                        break
+                    case 'nick' :
+                        dispatch(nickCheck(result.data.nick))
+                    case 'all' :
+                        dispatch(userIdCheck(result.data.userId))
+                        dispatch(nickCheck(result.data.nick))
+                }
             }
         })
         .catch((error)=>{
@@ -69,12 +89,6 @@ const SignUp:React.FC = () => {
         }
     }, [signUpData.password, signUpData.passwordConfim])
 
-    useEffect(()=>{
-        if(signUpData.nick !== undefined) {
-            dispatch(nickCheck())
-        }
-    }, [signUpData.nick])
-
     return (
         <Body>
             <Container>
@@ -84,9 +98,10 @@ const SignUp:React.FC = () => {
                     <Input
                         defaultValue={signUpData.userId} 
                         placeholder="User-Id" 
+                        maxLength={10}
                         onChange={(e)=>{dispatch(setSignUpData({ type: 'userId', value: e.target.value }))}}
                     />
-                    <CheckBtn onClick={idCheck}>Check</CheckBtn>
+                    <CheckBtn onClick={()=>duplicateCheck('userId')}>Check</CheckBtn>
                     <SignUpMessage style={{
                         color: signUpValidation.isUserId === true ? "blue" : "red"
                     }}>&nbsp;{ signUpMessage.userIdMessage }</SignUpMessage>
@@ -123,6 +138,7 @@ const SignUp:React.FC = () => {
                         maxLength={10}
                         onChange={(e)=>{dispatch(setSignUpData({ type: 'nick', value: e.target.value } ))}}
                     />
+                    <CheckBtn onClick={()=>duplicateCheck('nick')}>Check</CheckBtn>
                     <SignUpMessage style={{
                         color: signUpValidation.isNick === true ? "blue" : "red"
                     }}>&nbsp;{ signUpMessage.nickMessage }</SignUpMessage>
@@ -134,9 +150,8 @@ const SignUp:React.FC = () => {
                         if(signUpValidation.isUserId && signUpValidation.isPassword && signUpValidation.isNick) {
                             signUp()
                         } else {
-                            idCheck()
+                            duplicateCheck('all')
                             dispatch(passwordCheck())
-                            dispatch(nickCheck())
                         }
                     }}>Sign-up</DoddleBtn>
                 </Wrapper>
@@ -185,7 +200,7 @@ const Input = styled.input`
     display: inline-block;
     border: 0px;
     border-bottom: 1px solid gray;
-    width: ${props => props.placeholder === "User-Id" && '140px' };
+    width: ${props => props.maxLength === 10 && '140px'};
 `
 
 const CheckBtn = styled.span`

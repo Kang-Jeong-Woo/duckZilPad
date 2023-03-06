@@ -76,13 +76,19 @@ export const signUpSlice = createSlice({
                 state.meassage.passwordMessage = 'password matches.'
             }
         },
-        nickCheck: (state) => {
+        nickCheck: (state, action: PayloadAction<string>) => {
             if(state.signUpData.nick === "" || state.signUpData.nick === undefined) {
                 state.validation.isNick = false
                 state.meassage.nickMessage = "Please enter nick."
-            } else {
+            } else if(state.signUpData.nick.length < 2 || state.signUpData.nick.length >= 10) {
+                state.validation.isNick = false
+                state.meassage.nickMessage = "Please enter at least 2 and no more than 10."
+            } else if(state.signUpData.nick === action.payload) {
+                state.validation.isNick = false
+                state.meassage.nickMessage = "Duplicate nick."
+            } else if(action.payload === undefined || action.payload === null || action.payload === "") {
                 state.validation.isNick = true
-                state.meassage.nickMessage = "Nick available."
+                state.meassage.nickMessage = "Not duplicate nick."
             }
         }
     }

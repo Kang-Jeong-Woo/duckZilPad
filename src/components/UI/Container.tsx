@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import React from "react";
 import {useAppSelector} from "@/store/hooks";
 import {RootState} from "@/store/store";
+import { getCookie } from "@/lib/cookie";
 
 const Container:React.FC<{
     children:React.ReactNode
@@ -11,7 +12,7 @@ const Container:React.FC<{
     const router = useRouter();
     const userInfo = useAppSelector((state:RootState) => state.user);
     const isLoggedIn = () => {
-        if(userInfo.isLogIn){
+        if(getCookie('accessToken')){
             router.push(`/${userInfo.userData.nick}`)
         }else{
             router.push("/log-in")

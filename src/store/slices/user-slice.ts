@@ -1,8 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface userState {
-    userData: userDataState,
-    isLogIn : boolean
+    userData: userDataState
 }
 
 export interface userDataState {
@@ -13,7 +12,7 @@ export interface userDataState {
 }
 
 const initialState: userState = {
-    userData: {}, isLogIn:false
+    userData: {}
 }
 
 const userSlice = createSlice({
@@ -21,7 +20,6 @@ const userSlice = createSlice({
     initialState,
     reducers:{
         setUser(state, action: PayloadAction<object>){
-            state.isLogIn = true;
             state.userData = action.payload;
         },
         userClear() {

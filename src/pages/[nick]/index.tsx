@@ -80,7 +80,7 @@ function HomePage() {
                 <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>
                 <meta name="keywords" content="다이어리 diary"/>
                 <meta name="author" content="KangJeongWoo"/>
-                <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0"/>
+                <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
 
                 <meta property={"og:type"} content={"webstie"}/>

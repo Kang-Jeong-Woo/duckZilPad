@@ -53,7 +53,7 @@ const ContentCntnr = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: fantasy;
+    font-family: cursive;
     font-size: xxx-large;
     min-width: 357px;
   }
