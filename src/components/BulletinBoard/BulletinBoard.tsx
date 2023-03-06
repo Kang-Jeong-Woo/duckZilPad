@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useRef, useState } from "react";
 import {RootState} from "@/store/store";
 import {useAppSelector} from "@/store/hooks";
 import ImgPostIt from "@/components/BulletinBoard/ImgPostIt";
@@ -7,13 +7,39 @@ import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
 
-const BulletinBoard: React.FC<{}> = (props) => {
+const BulletinBoard = () => {
     const tablesData = useAppSelector((state: RootState) => state.data.tableData);
     const fontsData = useAppSelector((state: RootState) => state.data.fontData);
     const ImgsData = useAppSelector((state: RootState) => state.data.imgData);
+    const bodyRef = useRef<HTMLDivElement>(null);
+    const [isDrag, setIsDrag] = useState<boolean>(false);
+    const [startX, setStartX] = useState<number>();
+    const [startY, setStartY] = useState<number>();
+    const onDragStart = (e:any) => {
+        e.preventDefault();
+        setIsDrag(true);
+        setStartX(e.pageX + bodyRef.current!.scrollLeft);
+        setStartY(e.pageY + bodyRef.current!.scrollTop);
+        console.log(bodyRef.current!.scrollLeft, bodyRef.current!.scrollTop)
+    };
+    const onDragEnd = () => {
+        setIsDrag(false);
+    };
+    const onDragMove = (e:any) => {
+        if (isDrag) {
+            bodyRef.current!.scrollLeft = startX! - e.pageX;
+            bodyRef.current!.scrollTop = startY! - e.pageY;
+        }
+    };
 
     return (
-        <Body>
+        <Body
+            ref={bodyRef}
+            onMouseDown={onDragStart}
+            onMouseMove={onDragMove}
+            onMouseUp={onDragEnd}
+            onMouseLeave={onDragEnd}
+        >
             <BulletinBoardCntnr>
                 {ImgsData.map((img) => (
                     img.isDelete === false && <ImgPostIt
@@ -70,10 +96,12 @@ const BulletinBoard: React.FC<{}> = (props) => {
 export default BulletinBoard;
 const Body = styled.div`
   background-color: #F2F2F2;
+  overflow: hidden;
 `;
 const BulletinBoardCntnr = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 3000px;
+  height: 3000px;
   background-color: #F2F2F2;
-  overflow: hidden;
+  position: relative;
+  overflow: auto;
 `;
