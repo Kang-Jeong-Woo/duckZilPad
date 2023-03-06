@@ -64,8 +64,5 @@ const FontAddForm:React.FC = () => {
             </form>
         </>
     )
-
-
-
 }
 export default FontAddForm;

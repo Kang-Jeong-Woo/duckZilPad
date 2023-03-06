@@ -57,9 +57,20 @@ const ContentCntnr = styled.div`
     font-size: xxx-large;
     min-width: 357px;
   }
+  @media (max-width: 745px){
+    display: block;
+    & span{
+      font-size: larger;
+    }
+  }
 `;
 const VideoCntnr = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px;
   min-width: 300px;
   min-height: 300px;
+  border: groove;
 `;
+

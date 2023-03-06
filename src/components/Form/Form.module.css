@@ -130,6 +130,10 @@
     grid-area: contentCntnr;
 }
 
+.contentCntnr label {
+    content: "제목";
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -225,11 +229,7 @@
     outline: 0;
 }
 
-@media (min-width: 768px) {
-    .button {
-        padding: 0 40px;
-    }
-}
+
 
 @keyframes bounceUp {
     0% {
@@ -265,4 +265,26 @@
     100% {
         transform: translateY(0);
     }
+}
+@media (max-width: 1310px) {
+    .imgForm {
+        font-size: smaller;
+    }
+    .imgCntnr div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        background-color: darkgray;
+        border: black solid 1px;
+        border-radius: 20px;
+    }
+    .fontForm {
+        font-size: smaller;
+    }
+}
+@media (max-width: 800px) {
+
 }

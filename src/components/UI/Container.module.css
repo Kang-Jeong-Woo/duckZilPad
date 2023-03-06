@@ -46,20 +46,33 @@
 
 .SideL {
     grid-area: SideL;
-
 }
 
 .SideR {
     grid-area: SideR;
-
 }
 
 .Content {
     grid-area: Content;
     min-height: 80vh;
 }
-
 .Footer {
     grid-area: Footer;
-
+}
+@media (max-width: 1252px) {
+    .Cntnr {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 60px auto 70px 70px 70px;
+        gap: 0px 0px;
+        grid-template-areas:
+    "Nav"
+    "Content"
+    "SideL"
+    "SideR"
+    "Footer";
+    }
+    .align{
+        padding: 30px;
+    }
 }

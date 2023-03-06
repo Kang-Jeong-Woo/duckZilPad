@@ -11,8 +11,7 @@ const LogInPage = () => {
     const loginMode = useAppSelector((state: RootState) => state.mode.loginMode);
 
     return(
-
-        <Container>
+        <>
             <Head>
                 <meta charSet="utf-8"/>
                 <title>DuckZil Pad | Log-in</title>
@@ -33,12 +32,10 @@ const LogInPage = () => {
 
                 <meta name="theme-color" content="#111111"/>
             </Head>
-            { loginMode.isLogin ?
-                <Login />
-                :
-                <SignUp />
-            }   
-        </Container>
+            <Container>
+                { loginMode.isLogin ? <Login /> : <SignUp /> }
+            </Container>
+        </>
     )
 }
 
