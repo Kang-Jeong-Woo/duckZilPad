@@ -118,8 +118,7 @@ const Canvas: React.FC<{
                     </PenMenuWrapper>
                 </IconWrapper>
 
-                <SaveWrapper onClick={onSaveDB} onMouseEnter={saveMouseEnter}
-                     onMouseLeave={saveMouseLeave}>
+                <SaveWrapper onClick={onSaveDB} onMouseEnter={saveMouseEnter} onMouseLeave={saveMouseLeave}>
                     <FontAwesomeIcon icon={faFloppyDisk} id={"save"}/>
                     <label htmlFor={"save"}></label>
                     <SaveIcon ref={saveRef}>Save</SaveIcon>

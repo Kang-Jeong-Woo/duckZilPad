@@ -6,31 +6,43 @@ import ImgPostIt from "@/components/BulletinBoard/ImgPostIt";
 import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowsUpDownLeftRight} from "@fortawesome/free-solid-svg-icons";
 
 const BulletinBoard = () => {
     const tablesData = useAppSelector((state: RootState) => state.data.tableData);
     const fontsData = useAppSelector((state: RootState) => state.data.fontData);
     const ImgsData = useAppSelector((state: RootState) => state.data.imgData);
     const bodyRef = useRef<HTMLDivElement>(null);
+    const [isMode, setIsMode] = useState<boolean>(false);
     const [isDrag, setIsDrag] = useState<boolean>(false);
     const [startX, setStartX] = useState<number>();
     const [startY, setStartY] = useState<number>();
     const onDragStart = (e:any) => {
         e.preventDefault();
+        if(isMode===false){
+            return
+        }
         setIsDrag(true);
         setStartX(e.pageX + bodyRef.current!.scrollLeft);
-        setStartY(e.pageY + bodyRef.current!.scrollTop);
-        console.log(bodyRef.current!.scrollLeft, bodyRef.current!.scrollTop)
-    };
-    const onDragEnd = () => {
-        setIsDrag(false);
+        setStartY(e.pageY);
     };
     const onDragMove = (e:any) => {
+        e.preventDefault();
+        if(isMode===false){
+            return
+        }
         if (isDrag) {
             bodyRef.current!.scrollLeft = startX! - e.pageX;
-            bodyRef.current!.scrollTop = startY! - e.pageY;
+            window.scrollBy({
+                top: startY! - e.pageY,
+                left: startX! - e.pageX,
+                behavior: "auto"
+            })
         }
     };
+    const onDragEnd = () => {setIsDrag(false)};
+    const dragClickHandler = () => {setIsMode(!isMode)};
 
     return (
         <Body
@@ -41,6 +53,12 @@ const BulletinBoard = () => {
             onMouseLeave={onDragEnd}
         >
             <BulletinBoardCntnr>
+
+                <MoveWrapper htmlFor={"move"}>
+                    <input hidden={true} type="checkbox" id={"move"} onChange={dragClickHandler}/>
+                    <MoveBtn><FontAwesomeIcon icon={faArrowsUpDownLeftRight}/></MoveBtn>
+                </MoveWrapper>
+
                 {ImgsData.map((img) => (
                     img.isDelete === false && <ImgPostIt
                         key={img._id}
@@ -104,4 +122,33 @@ const BulletinBoardCntnr = styled.div`
   background-color: #F2F2F2;
   position: relative;
   overflow: auto;
+`;
+const MoveBtn = styled.span`
+  list-style: none;
+  cursor: pointer;
+  width: 33px;
+  height: 33px;
+  border-radius: 3rem;
+  position: fixed;
+  top: 28px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 0 20px;
+  background-color: #EBE51E;
+  color: #111;
+  border: 2px solid #111;
+  box-shadow: 4px 4px black;
+  z-index: 10000;
+  transition: 0.6s;
+`;
+const MoveWrapper = styled.label`
+  & input {
+    &:checked + ${MoveBtn}{
+      box-shadow:0px 0px black;
+      background-color: #D6D01F;
+    }
+  }
 `;
