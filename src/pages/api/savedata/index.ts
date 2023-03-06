@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const imgData: imgDataState[] = req.body.imgData;
                 const drawData: drawDataState = req.body.drawData;
 
-                if(tableData.length > 0) {
+                if(tableData.length) {
                     // 테이블 데이터 저장
                     for(let i=0; i<tableData.length; i++) {
                         // 삭제
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 }
 
-                if(fontData.length > 0) {
+                if(fontData.length) {
                     // 폰트 데이터 저장
                     for(let i=0; i<fontData.length; i++) {
                         // 삭제
@@ -64,7 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 }
 
-                if(imgData.length > 0) {
+                if(imgData.length) {
                     // 이미지 데이터 저장
                     for (let i = 0; i < imgData.length; i++) {
                         // 삭제

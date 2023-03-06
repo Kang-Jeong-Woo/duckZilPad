@@ -108,7 +108,7 @@ const Canvas: React.FC<{
                             <label htmlFor={"radius"} id={"radius"}>
                                 <FontIcon><FontAwesomeIcon icon={faPaintbrush}/></FontIcon>
                                 <input type="range" id={"radius"} name={"radius"} min={1} max={20} step={0.5}
-                                       value={canvasData.radius} onChange={changeRadius}/>
+                                       value={canvasData.radius} onChange={changeRadius} />
                             </label>
                         </div>
                         <div>
