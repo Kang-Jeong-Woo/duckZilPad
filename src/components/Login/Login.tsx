@@ -8,13 +8,9 @@ import Logo from "@/components/UI/Logo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { setCookie } from "@/lib/cookie";
-
-
 export default function Login() {
-
     const router = useRouter();
     const dispatch = useAppDispatch();
-
     // 로그인 데이터
     const loginData = useAppSelector((state: RootState)=> state.login.loginData);
     // 로그인 메세지
@@ -52,7 +48,6 @@ export default function Login() {
             });
         }
     }
-    
     return(
         <Body>
             <Container>
@@ -83,7 +78,6 @@ export default function Login() {
         </Body>
     )
 }
-
 // styled components
 const Body = styled.div`
     width: 100%;
@@ -104,18 +98,15 @@ const Container = styled.div`
     //border: 1px gray solid;
     //border-radius: 20px;
 `
-
 const Title = styled.h2`
     text-align: center;
     padding-bottom: 20px;
     color: rgba(0, 0, 0, 0.636);
 `
-
 const Wrapper = styled.div`
     text-align: center;
     margin-bottom: 10px;
 `
-
 const Input = styled.input`
     font-size: 16px;
     height: 30px;
@@ -124,7 +115,6 @@ const Input = styled.input`
     border: 0px;
     border-bottom: 1px solid gray;
 `
-
 const LoginMessage = styled.p`
     color: red;
     display: block;
@@ -134,14 +124,12 @@ const LoginMessage = styled.p`
     line-height: 10px;
     margin-top: 5px;
 `
-
 const ModeMessage = styled.span`
     display: inline-block;
     padding-bottom: 15px;
     padding-right: 10px;
     color: black;
 `
-
 const ModeBtn = styled.a`
     color: #FF6EC7;
     cursor: pointer;
@@ -151,6 +139,3 @@ const ModeBtn = styled.a`
         font-weight: bold;
     }
 `
-
-
-

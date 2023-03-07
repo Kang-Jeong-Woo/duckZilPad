@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {RootState} from "@/store/store";
 import {postItDataActions} from "@/store/slices/postItDataSlice";
@@ -32,14 +32,14 @@ const FontAddForm:React.FC = () => {
             <form className={classes.fontForm} onSubmit={addFont}>
 
                 <div className={classes.contentCntnr}>
-                    <h2 className={classes.paragraph}><span>1. Please enter the content.</span></h2>
+                    <h2 className={classes.paragraph}><span className={classes.fontQ1}></span></h2>
                     <div className={classes.center}>
                         <input className={classes.input} type="text" id={"content"} name={"content"} ref={inputRef}/>
                     </div>
                 </div>
 
                 <div className={classes.fontCntnr}>
-                    <h2 className={classes.paragraph}><span>2. Choose the font you want.</span></h2>
+                    <h2 className={classes.paragraph}><span className={classes.fontQ2}></span></h2>
                     <div className={classes.center}>
                         <select className={classes.select} ref={styleRef} defaultValue={""} id={"select"}>
                             <option defaultValue={""} style={{textAlign:"center"}}>Choose the font.</option>
@@ -52,7 +52,7 @@ const FontAddForm:React.FC = () => {
                 </div>
 
                 <div className={classes.colorCntnr}>
-                    <h2 className={classes.paragraph}><span>3. Select the color of the font you want.</span></h2>
+                    <h2 className={classes.paragraph}><span className={classes.fontQ3}></span></h2>
                     <div className={classes.center}>
                         <input type={"color"} id={"color"} name={"color"} ref={colorRef}/>
                     </div>
@@ -61,6 +61,7 @@ const FontAddForm:React.FC = () => {
                 <div className={classes.sendCntnr}>
                     <button className={classes.button}>Send</button>
                 </div>
+
             </form>
         </>
     )

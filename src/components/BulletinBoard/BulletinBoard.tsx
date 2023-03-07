@@ -61,9 +61,6 @@ const BulletinBoard = () => {
             ref={bodyRef}
             onMouseDown={onDragStart}
             onMouseMove={onDragMove}
-            onTouchStart={onDragStart}
-            onTouchMove={onDragMove}
-            onTouchEnd={onDragEnd}
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
             onTouchStart={onTouchDragStart}

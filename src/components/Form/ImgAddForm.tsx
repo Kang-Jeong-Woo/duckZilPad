@@ -79,14 +79,14 @@ const ImgAddForm:React.FC = () => {
             <form className={classes.imgForm} onSubmit={submitHandler} encType={"multipart/form-data"}>
 
                 <div className={classes.titleCntnr}>
-                    <h2><label htmlFor="description">1. Please enter a title of the image</label></h2>
+                    <h2><label htmlFor="description" className={classes.imgQ1}></label></h2>
                     <div className={classes.textAreaCntnr}>
                         <textarea className={classes.textArea} id={"description"} rows={1} ref={descriptionInputRef}></textarea>
                     </div>
                 </div>
 
                 <div className={classes.imgContentCntnr}>
-                    <h2><label htmlFor="image">2. Please post a photo of your favorite celebrity or Idol.</label></h2>
+                    <h2><label htmlFor="image" className={classes.imgQ2}></label></h2>
                     <input id={"image"} name={'image'} type={"file"} accept={"image/jpg, image/jpeg, image/png"}
                            ref={fileInputRef} onChange={uploadFile}/>
                     <div className={classes.imgCntnr}>

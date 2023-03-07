@@ -93,4 +93,7 @@ const PostItModal = styled.div`
   @media (max-width: 1326px) {
     padding: 4em;
   }
+  @media (max-width: 500px) {
+    padding: 70px;
+  }
 `;

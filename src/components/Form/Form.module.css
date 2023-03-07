@@ -18,17 +18,20 @@
     color: black;
     font-family: cursive;
 }
+
 .tableExample {
     font-family: cursive;
     color: black;
     padding-right: 1em;
 }
-.tableHeader{
+
+.tableHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 8em;
 }
+
 .tableForm {
     height: 45vh;
     display: grid;
@@ -130,11 +133,6 @@
     grid-area: contentCntnr;
 }
 
-.paragraph {
-    white-space : nowrap;
-    overflow : hidden;
-    text-overflow: ellipsis;
-}
 
 .center {
     display: flex;
@@ -231,8 +229,37 @@
     outline: 0;
 }
 
+.fontQ1:after {
+    content: "1. Please enter the Content.";
+}
 
+.fontQ2:after {
+    content: "2. Choose the font you want.";
+}
 
+.fontQ3:after {
+    content: "3. Select the color of the font you want.";
+}
+
+.imgQ1:after {
+    content: "1. Please enter a title of the image";
+}
+
+.imgQ2:after {
+    content: "2. Please post a photo of your favorite celebrity or Idol.";
+}
+.tableQ1:after{
+    content: "1. Choose the font style you want.";
+}
+.tableQ2:after{
+    content: "2. Select the color of the font you want.";
+}
+.tableQ3:after{
+    content: "3. Select the color of the border you want.";
+}
+.tableQ4:after{
+    content: "4. Select the color of the bg you want.";
+}
 @keyframes bounceUp {
     0% {
         transform: translateY(0%);
@@ -268,13 +295,33 @@
         transform: translateY(0);
     }
 }
-@media (max-width: 1310px) {
+
+@media (max-width: 768px) {
     .header {
-        font-size: medium;
+        font-size: x-large;
+        margin-bottom: 0;
     }
+
+    /*.paragraph {*/
+    /*    white-space : nowrap;*/
+    /*    overflow : hidden;*/
+    /*    text-overflow: ellipsis;*/
+    /*}*/
     .imgForm {
-        font-size: smaller;
+        height: 42em;
+        display: block;
+        color: black;
+        font-family: cursive;
+        font-size: xx-small;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
+    .imgForm > * {
+        margin: 1.5em;
+    }
+
     .imgCntnr div {
         display: flex;
         justify-content: center;
@@ -286,25 +333,84 @@
         border: black solid 1px;
         border-radius: 20px;
     }
-    .fontForm {
-        height: 40vh;
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 10vh 10vh 10vh 10vh;
-        gap: 0px 0px;
-        grid-template-areas:
-    "contentCntnr"
-    "fontCntnr"
-    "colorCntnr"
-    "sendCntnr";
+
+    .tableForm{
+        height: 42em;
+        display: block;
         color: black;
         font-family: cursive;
         font-size: xx-small;
-        white-space : nowrap;
-        overflow : hidden;
+        white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
-    .contentCntnr, .fontCntnr, .colorCntnr{
-        display: flex;
+
+    .tableForm > * {
+        margin: 1em;
+    }
+
+    .fontForm {
+        height: 42em;
+        display: block;
+        color: black;
+        font-family: cursive;
+        font-size: xx-small;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .contentCntnr, .fontCntnr, .colorCntnr {
+        /*display: flex;*/
+        margin: 30px 0px;
+    }
+
+    .imgQ1:after {
+        content: "1. Title";
+    }
+
+    .imgQ2:after {
+        content: "2. Img";
+    }
+
+    .tableQ1:after{
+        content: "1. Font";
+    }
+    .tableQ2:after{
+        content: "2. Font Color";
+    }
+    .tableQ3:after{
+        content: "3. Border";
+    }
+    .tableQ4:after{
+        content: "4. Border Color";
+    }
+
+    .fontQ1:after {
+        content: "1. Content";
+    }
+
+    .fontQ2:after {
+        content: "2. Font";
+    }
+
+    .fontQ3:after {
+        content: "3. Color";
+    }
+
+    .center {
+        margin: 0;
+    }
+
+    .contentCntnr .input, .titleCntnr .textArea, .fontCntnr .select {
+        width: 100px;
+        height: 20px;
+    }
+
+    .button {
+        height: 30px;
+    }
+    .button:after{
+        height: 30px;
     }
 }

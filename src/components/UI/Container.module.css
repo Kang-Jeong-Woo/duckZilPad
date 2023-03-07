@@ -55,6 +55,7 @@
 .Content {
     grid-area: Content;
     min-height: 80vh;
+    display: flex;
 }
 .Footer {
     grid-area: Footer;

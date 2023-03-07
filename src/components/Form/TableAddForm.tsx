@@ -61,7 +61,7 @@ const TableAddForm:React.FC = () => {
             <form className={classes.tableForm} onSubmit={addTable}>
 
                 <div className={classes.fontCntnr}>
-                    <h2><label htmlFor={"content"}>1. Choose the font style you want.</label></h2>
+                    <h2><label htmlFor={"content"} className={classes.tableQ1}></label></h2>
                     <div className={classes.center}>
                         <select className={classes.select} defaultValue={""} style={{textAlign:"center"}} onChange={setFontFn}>
                             <option defaultValue={""} style={{textAlign:"center"}}>Choose the font you want.</option>
@@ -74,21 +74,21 @@ const TableAddForm:React.FC = () => {
                 </div>
 
                 <div className={classes.fontColorCntnr}>
-                    <h2><label htmlFor={"color"}>2. Select the color of the font you want.</label></h2>
+                    <h2><label htmlFor={"color"} className={classes.tableQ2}></label></h2>
                     <div className={classes.center}>
                         <input type={"color"} id={"color"} name={"color"} value={fontColor||"#ffffff"} onChange={setFontColorFn}/>
                     </div>
                 </div>
 
                 <div className={classes.borderColorCntnr}>
-                    <h2><label htmlFor={"color"}>3. Select the color of the border you want.</label></h2>
+                    <h2><label htmlFor={"color"} className={classes.tableQ3}></label></h2>
                     <div className={classes.center}>
                         <input type={"color"} id={"color"} name={"color"} value={borderColor||"#ffffff"} onChange={setBorderColorFn}/>
                     </div>
                 </div>
 
                 <div className={classes.backColorCntnr}>
-                    <h2><label htmlFor={"color"}>4. Select the color of the bg you want.</label></h2>
+                    <h2><label htmlFor={"color"} className={classes.tableQ4}></label></h2>
                     <div className={classes.center}>
                         <input type={"color"} id={"color"} name={"color"} value={bgColor||"#ffffff"} onChange={setBgColorFn}/>
                     </div>
