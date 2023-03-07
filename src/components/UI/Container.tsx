@@ -23,7 +23,7 @@ const Container:React.FC<{
         <div className={classes.Cntnr}>
             <div className={`${classes.Nav} ${classes.border} ${classes.align}`}>
                 <Link href={"/"}>Home</Link>
-                <div> Comming Soon </div>
+                <Link href={"https://github.com/Kang-Jeong-Woo/duckZilPad"}> Git hub Repository </Link>
                 <button className={classes.btn} onClick={isLoggedIn}>create+</button>
             </div>
             <div className={`${classes.SideL} ${classes.border} ${classes.center}`}>광고 배너</div>

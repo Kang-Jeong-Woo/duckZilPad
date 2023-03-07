@@ -56,6 +56,7 @@
         <td>
             <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
             <img src="https://img.shields.io/badge/Font Awesome-528DD7?style=for-the-badge&logo=Font Awesome&logoColor=white"/>
+            <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components=white"/>
         </td>
     </tr>
     <tr>
