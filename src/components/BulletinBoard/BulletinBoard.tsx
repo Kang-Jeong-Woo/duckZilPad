@@ -1,46 +1,61 @@
 import styled from "styled-components";
 import React, { useRef, useState } from "react";
 import {RootState} from "@/store/store";
-import {useAppSelector} from "@/store/hooks";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import ImgPostIt from "@/components/BulletinBoard/ImgPostIt";
 import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 import Canvas from "@/components/BulletinBoard/Canvas";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowsUpDownLeftRight} from "@fortawesome/free-solid-svg-icons";
+import { setDragIsMode, setIsDrag } from "@/store/slices/modeSlice";
 
 const BulletinBoard = () => {
+    const dispatch = useAppDispatch();
     const tablesData = useAppSelector((state: RootState) => state.data.tableData);
     const fontsData = useAppSelector((state: RootState) => state.data.fontData);
     const ImgsData = useAppSelector((state: RootState) => state.data.imgData);
+    const dragMode = useAppSelector((state: RootState)=> state.mode.dragMode);
     const bodyRef = useRef<HTMLDivElement>(null);
-    const [isMode, setIsMode] = useState<boolean>(false);
-    const [isDrag, setIsDrag] = useState<boolean>(false);
     const [startX, setStartX] = useState<number>();
     const [startY, setStartY] = useState<number>();
+    // window 마우스 터치 이벤트
     const onDragStart = (e:any) => {
-        if(isMode===false){
+        if(dragMode.isMode===false){
             return
         }
-        setIsDrag(true);
+        dispatch(setIsDrag(true));
         setStartX(e.pageX + bodyRef.current!.scrollLeft);
-        setStartY(e.pageY);
+        setStartY(e.pageY + bodyRef.current!.scrollTop);
     };
     const onDragMove = (e:any) => {
-        if(isMode===false){
+        if(dragMode.isMode===false){
             return
         }
-        if (isDrag) {
+        if (dragMode.isDrag) {
             bodyRef.current!.scrollLeft = startX! - e.pageX;
-            window.scrollBy({
-                top: startY! - e.pageY,
-                left: startX! - e.pageX,
-                behavior: "auto"
-            })
+            bodyRef.current!.scrollTop = startY! - e.pageY;
         }
     };
-    const onDragEnd = () => {setIsDrag(false)};
-    const dragClickHandler = () => {setIsMode(!isMode)};
+    // mobile 디바이스 터치 이벤트
+    const onTouchDragStart = (e:any) => {
+        if(dragMode.isMode===false){
+            return
+        }
+        dispatch(setIsDrag(true));
+        setStartX(e.touches[0].pageX + bodyRef.current!.scrollLeft);
+        setStartY(e.touches[0].pageY + bodyRef.current!.scrollTop);
+    };
+    const onTouchDragMove = (e:any) => {
+        if(dragMode.isMode===false){
+            return
+        }
+        if (dragMode.isDrag) {
+            bodyRef.current!.scrollLeft = startX! - e.touches[0].pageX;
+            bodyRef.current!.scrollTop = startY! - e.touches[0].pageY;
+        }
+    };
+    const onDragEnd = () => {dispatch(setIsDrag(false));};
     return (
         <Body
             ref={bodyRef}
@@ -48,11 +63,15 @@ const BulletinBoard = () => {
             onMouseMove={onDragMove}
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
+            onTouchStart={onTouchDragStart}
+            onTouchMove={onTouchDragMove}
+            onTouchEnd={onDragEnd}
+            onTouchCancel={onDragEnd}
         >
             <BulletinBoardCntnr>
 
                 <MoveWrapper htmlFor={"move"}>
-                    <input hidden={true} type="checkbox" id={"move"} onChange={dragClickHandler}/>
+                    <input hidden={true} type="checkbox" id={"move"} onChange={()=>dispatch(setDragIsMode())}/>
                     <MoveBtn><FontAwesomeIcon icon={faArrowsUpDownLeftRight}/></MoveBtn>
                 </MoveWrapper>
 
